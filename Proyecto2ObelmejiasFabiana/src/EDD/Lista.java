@@ -57,11 +57,15 @@ public class Lista {
     public void eliminarFinal(){
         if(!this.isEmpty()){
             if(this.size == 1){
-                this.destruir();
+                this.setpFirst(null);
             }else{
-                
+                Nodo temp = this.pFirst;
+                while(temp.getpNext().getpNext() != null){
+                    temp = temp.getpNext();
+                }
+                temp.setpNext(null);
             }
-          
+            size --; //independientemente entre en el if o en el else le va a restar al tamaño
     }
 }
     public void destruir(){ //vacía la lista por completo
