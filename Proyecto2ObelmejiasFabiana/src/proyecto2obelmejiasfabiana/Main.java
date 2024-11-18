@@ -8,7 +8,7 @@ package proyecto2obelmejiasfabiana;
  *
  * @author obelm
  */
-public class Proyecto2ObelmejiasFabiana {
+public class Main {
 
     /**
      * @param args the command line arguments
