@@ -68,6 +68,24 @@ public class Lista {
             size --; //independientemente entre en el if o en el else le va a restar al tamaño
     }
 }
+    
+    public boolean buscar(Object dato){
+        if(!this.isEmpty()){
+            if(this.size == 1){
+                return this.pFirst.getDato() == dato;
+            
+            }else{//debo iterar sobre la lista
+                Nodo temp = this.pFirst;
+                while(temp != null){
+                    if(temp.getDato() == dato){
+                        return true;
+                    }
+                    temp = temp.getpNext();
+                }
+            }
+        }
+        return false;
+    }
     public void destruir(){ //vacía la lista por completo
         this.pFirst = null;
         this.size = 0; 
