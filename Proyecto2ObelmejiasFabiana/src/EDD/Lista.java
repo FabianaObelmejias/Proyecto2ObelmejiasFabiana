@@ -56,7 +56,17 @@ public class Lista {
     
     public void eliminarFinal(){
         if(!this.isEmpty()){
-            
+            if(this.size == 1){
+                this.destruir();
+            }else{
+                
+            }
+          
+    }
+}
+    public void destruir(){ //vacía la lista por completo
+        this.pFirst = null;
+        this.size = 0; 
         
     }
 }
