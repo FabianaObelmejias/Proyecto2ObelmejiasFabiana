@@ -33,6 +33,30 @@ public class Lista {
         this.size = size;
     }
     
+    public boolean isEmpty(){
+        return this.pFirst == null;
+        
+    }
     
+    public void insertarFinal(Object dato){
+        Nodo pNew = new Nodo(dato);
+        if(this.isEmpty()){
+            this.setpFirst(pNew);
+            
+        }else{
+            Nodo temp = this.pFirst;
+            while(temp.getpNext() != null){
+                temp = temp.getpNext();
+            }
+            
+            temp.setpNext(pNew);
+        }
+        this.size ++;
+    }
     
+    public void eliminarFinal(){
+        if(!this.isEmpty()){
+            
+        
+    }
 }
