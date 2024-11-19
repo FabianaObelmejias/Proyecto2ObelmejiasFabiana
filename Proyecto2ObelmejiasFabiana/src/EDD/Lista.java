@@ -89,13 +89,25 @@ public class Lista {
         return false;
     }
         
-        
+    /**
+     *
+     */
+
+    /**
+     *
+     */
     public void mostrar(){
+
         if(!this.isEmpty()){
             String listaString = "";
             
             //empiezo a recorrer
-            Nodo
+            Nodo temp = this.pFirst;
+            while(temp != null){
+                listaString += temp.getDato() + "\n";
+                
+                temp = temp.getpNext();
+            }
         }else{
             JOptionPane.showMessageDialog(null, "La lista está vacía.");
         }
