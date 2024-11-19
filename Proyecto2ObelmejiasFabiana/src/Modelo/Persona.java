@@ -124,23 +124,21 @@ public class Persona {
         this.comentariosVida = comentariosVida;
     }
     
-    //es necesario retornar el toString
+    //es necesario retornar el toString, me sirve para todo lo que tenga que mostrar
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Persona{");
-        sb.append("nombreCompleto=").append(nombreCompleto);
-        sb.append(", numeral=").append(numeral);
-        sb.append(", padre=").append(padre);
-        sb.append(", madre=").append(madre);
-        sb.append(", mote=").append(mote);
-        sb.append(", titulo=").append(titulo);
-        sb.append(", esposa=").append(esposa);
-        sb.append(", colorOjos=").append(colorOjos);
-        sb.append(", colorCabello=").append(colorCabello);
-        sb.append(", comentariosVida=").append(comentariosVida);
-        sb.append(", comentariosMuerte=").append(comentariosMuerte);
-        sb.append('}');
+        sb.append("Información Completa: ");
+        sb.append("\nNombreCompleto: ").append(nombreCompleto).append(" ").append(numeral);
+        sb.append("\nPadre: ").append(padre);
+        sb.append("\nMadre: ").append(madre);
+        sb.append("\nMote: ").append(mote);
+        sb.append("\nTitulo: ").append(titulo);
+        sb.append("\nEsposa: ").append(esposa);
+        sb.append("\nColor de Ojos: ").append(colorOjos);
+        sb.append("\nColor de Cabello: ").append(colorCabello);
+        sb.append("\nComentarios de su Vida: ").append(comentariosVida);
+        sb.append("\nComentarios de su Muerte: ").append(comentariosMuerte);
         return sb.toString();
     }
     
