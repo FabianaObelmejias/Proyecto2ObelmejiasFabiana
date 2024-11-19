@@ -9,7 +9,24 @@ package EDD;
  * @author obelm
  */
 public class ArbolGeneral {
-   
+   //solamenta va a tener la raiz 
+    private NodoArbol raiz;
+
+    public ArbolGeneral() {
+        this.raiz = null;
+    }
+
+    public NodoArbol getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(NodoArbol raiz) {
+        this.raiz = raiz;
+    }
+    
+    
+    
+    
     
     
 }
