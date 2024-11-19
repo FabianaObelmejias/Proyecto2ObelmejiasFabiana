@@ -4,11 +4,13 @@
  */
 package EDD;
 
+import Modelo.Persona;
+
 /**
  *
  * @author obelm
  */
-public class ArbolGeneral {
+public class ArbolGeneral{
    //solamenta va a tener la raiz 
     private NodoArbol raiz;
 
@@ -42,7 +44,28 @@ public class ArbolGeneral {
     
     //voy por cada nivel del arbol para buscar los nodos en cada nivel
     
-    public NodoArbol nuscarPorNombre(String nombre){
+    public NodoArbol buscarPorNombre(String nombre){
+        if (this.isEmpty()) {
+            return null;
+        }
+
+        Cola cola = new Cola();
+        cola.encolar(raiz);
+
+        while (!cola.isEmpty()) {
+            NodoArbol nodoActual = (NodoArbol) cola.desencolar();
+            Persona persona = (Persona) nodoActual.getDato();
+            if (persona.getNombreCompleto().equalsIgnoreCase(nombre)) {
+                return nodoActual;
+            }
+
+            Nodo hijoNodo = nodoActual.getHijos().getpFirst();
+            while (hijoNodo != null) {
+                NodoArbol hijo = (NodoArbol) hijoNodo.getDato();
+                cola.encolar(hijo);
+                hijoNodo = hijoNodo.getpNext();
+            }
+        }
         return null;
     }
     
