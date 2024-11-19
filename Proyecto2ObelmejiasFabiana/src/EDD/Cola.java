@@ -84,6 +84,6 @@ public class Cola {
             JOptionPane.showMessageDialog(null, listaString);
         }else{
             JOptionPane.showMessageDialog(null, "La lista esta vacia.");
-     }
-    }
+        }
+    }
 }
