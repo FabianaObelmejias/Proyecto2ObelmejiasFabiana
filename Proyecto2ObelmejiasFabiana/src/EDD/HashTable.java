@@ -66,4 +66,10 @@ public class HashTable {
         
         return null;
     }
+    
+    //DEBO utilizar el destruir para reinicializar todas las listas que estan en la tabla en caso tal de ser necesario
+    public void destruir(){
+        for(int i = 0; i < this.capacidad; i++)
+            tabla[i] = new Lista();
+    }
 }
