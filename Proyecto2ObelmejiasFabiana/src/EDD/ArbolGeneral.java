@@ -40,6 +40,16 @@ public class ArbolGeneral {
         return hijo;
     }
     
+    //voy por cada nivel del arbol para buscar los nodos en cada nivel
+    
+    public NodoArbol nuscarPorNombre(String nombre){
+        return null;
+    }
+    
+    public void mostrarPorNivel(){
+        
+    }
+    
     
     
     
