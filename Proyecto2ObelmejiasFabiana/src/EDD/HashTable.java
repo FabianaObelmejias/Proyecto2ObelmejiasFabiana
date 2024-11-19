@@ -72,4 +72,20 @@ public class HashTable {
         for(int i = 0; i < this.capacidad; i++)
             tabla[i] = new Lista();
     }
+    
+    //debe existir una funcion que muestre el HASHTABLE
+    public void mostrar(){
+        for (int i = 0; i < capacidad; i++) {
+            if(!tabla[i].isEmpty()){
+                System.out.println("\nIndice" + i+":");
+                Nodo temp = tabla[i].getpFirst();
+                while(temp!=null){
+                    Persona personaAct = (Persona) temp.getDato();
+                    System.out.print(personaAct.nombreUnico() + "->");
+                    temp = temp.getpNext();
+                }
+                System.out.println("null");
+            }
+        }
+    }
 }
