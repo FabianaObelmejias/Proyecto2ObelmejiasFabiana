@@ -40,13 +40,25 @@ public class Cola {
         return size;
     }
 
+      
     public void setSize(int size) {
         this.size = size;
     }
     
+    public boolean isEmpty(){
+        return this.cabeza == null;
+    }
     
     public void encolar(Object dato){ 
-     
+        Nodo pNew = new Nodo(dato);
+        if(!this.isEmpty()){
+            this.setCabeza(pNew);
+            this.setCola(pNew);
+        }else{
+            this.cola.setpNext(pNew);
+            this.setCola(pNew);
+    }
+        size++;
     }
     
     public Object desencolar(){
