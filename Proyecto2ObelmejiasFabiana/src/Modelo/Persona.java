@@ -124,12 +124,16 @@ public class Persona {
         this.comentariosVida = comentariosVida;
     }
     
+    public String nombreUnico(){
+        return this.nombreCompleto + " " + this.numeral;
+    }
+    
     //es necesario retornar el toString, me sirve para todo lo que tenga que mostrar
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Información Completa: ");
-        sb.append("\nNombreCompleto: ").append(nombreCompleto).append(" ").append(numeral);
+        sb.append("\nNombreCompleto: ").append(this.nombreUnico());
         sb.append("\nPadre: ").append(padre);
         sb.append("\nMadre: ").append(madre);
         sb.append("\nMote: ").append(mote);

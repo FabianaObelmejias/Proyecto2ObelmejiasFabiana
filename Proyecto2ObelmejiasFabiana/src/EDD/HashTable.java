@@ -23,4 +23,13 @@ public class HashTable {
             tabla[i] = new Lista();
         }
     }
+    
+    private int hash(Object clave){ //esta fucnion me devuelve el indice que voy a insertar en la tabla
+        return Math.abs(clave.hashCode()) % capacidad; //manejo la posible colision con listas
+    }
+    
+    public void insertar(Object clave, Object dato){
+        int indice = hash(clave);//busco el indice que viene definido por la funcion hash, el indice me va a retornar un entero
+        Lista listaEnIndice = tabla[indice]; //busco cual es ese indice
+    }
 }
