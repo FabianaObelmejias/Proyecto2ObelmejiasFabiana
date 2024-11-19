@@ -4,6 +4,8 @@
  */
 package EDD;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author obelm
@@ -81,11 +83,25 @@ public class Lista {
                         return true;
                     }
                     temp = temp.getpNext();
-                }
-            }
+                
+            
         }
         return false;
     }
+        
+        
+    public void mostrar(){
+        if(!this.isEmpty()){
+            String listaString = "";
+            
+            //empiezo a recorrer
+            Nodo
+        }else{
+            JOptionPane.showMessageDialog(null, "La lista está vacía.");
+        }
+    }
+
+
     public void destruir(){ //vacía la lista por completo
         this.pFirst = null;
         this.size = 0; 
