@@ -108,6 +108,8 @@ public class Lista {
                 
                 temp = temp.getpNext();
             }
+            
+            JOptionPane.showMessageDialog(null, listaString);
         }else{
             JOptionPane.showMessageDialog(null, "La lista está vacía.");
         }
