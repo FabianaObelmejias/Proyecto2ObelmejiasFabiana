@@ -5,6 +5,7 @@
 package EDD;
 
 import Modelo.Persona;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -70,12 +71,30 @@ public class ArbolGeneral{
     }
     
     public void mostrarPorNivel(){
-        
+        //depende del buscarPorNombre AJURO, con ello podremos probar la funcionalidad del arbol
+        if (this.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Arbol se encuentra Vacio");
+        } else {
+            String arbolStr = "Arbol:\n";
+            Cola cola = new Cola();
+            cola.encolar(raiz);
+
+            while (!cola.isEmpty()) {
+                NodoArbol nodoActual = (NodoArbol) cola.desencolar();
+                Persona persona = (Persona) nodoActual.getDato();
+                
+                arbolStr += persona + "\n\n";
+
+                Nodo hijoNodo = nodoActual.getHijos().getpFirst();
+                while (hijoNodo != null) {
+                    NodoArbol hijo = (NodoArbol) hijoNodo.getDato();
+                    cola.encolar(hijo);
+                    hijoNodo = hijoNodo.getpNext();
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, arbolStr);
+
+        }
     }
-    
-    
-    
-    
-    
-    
 }
