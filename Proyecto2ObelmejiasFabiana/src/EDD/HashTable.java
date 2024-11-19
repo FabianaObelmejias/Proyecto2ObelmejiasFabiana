@@ -47,6 +47,9 @@ public class HashTable {
             int indice = hash(clave);
             Lista listaEnIndice = tabla[indice];
             
+            
+            if(!listaEnIndice.isEmpty()){
+            
             Nodo temp = listaEnIndice.getpFirst();
             while(temp != null){
                 Persona personaActual = (Persona) temp.getDato();
