@@ -14,7 +14,7 @@ public class HashTable {
 
     public HashTable(int capacidad) {
         this.capacidad = capacidad;
-        this.tabla = new Lista(capacidad);
+        this.tabla = new Lista[capacidad];
         this.inicializar();
     }
     //Esto me resulta en un arreglo pero en cada funcion del arreglo no hay una lista sino que esta vacia
