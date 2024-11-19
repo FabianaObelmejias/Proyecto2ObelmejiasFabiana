@@ -124,6 +124,26 @@ public class Persona {
         this.comentariosVida = comentariosVida;
     }
     
+    //es necesario retornar el toString
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Persona{");
+        sb.append("nombreCompleto=").append(nombreCompleto);
+        sb.append(", numeral=").append(numeral);
+        sb.append(", padre=").append(padre);
+        sb.append(", madre=").append(madre);
+        sb.append(", mote=").append(mote);
+        sb.append(", titulo=").append(titulo);
+        sb.append(", esposa=").append(esposa);
+        sb.append(", colorOjos=").append(colorOjos);
+        sb.append(", colorCabello=").append(colorCabello);
+        sb.append(", comentariosVida=").append(comentariosVida);
+        sb.append(", comentariosMuerte=").append(comentariosMuerte);
+        sb.append('}');
+        return sb.toString();
+    }
+    
     
     
 }
