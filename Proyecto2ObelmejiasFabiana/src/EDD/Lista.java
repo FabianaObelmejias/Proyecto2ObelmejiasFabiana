@@ -75,7 +75,6 @@ public class Lista {
         if(!this.isEmpty()){
             if(this.size == 1){
                 return this.pFirst.getDato() == dato;
-            
             }else{//debo iterar sobre la lista
                 Nodo temp = this.pFirst;
                 while(temp != null){
@@ -83,8 +82,8 @@ public class Lista {
                         return true;
                     }
                     temp = temp.getpNext();
-                
-            
+                }
+            }
         }
         return false;
     }
