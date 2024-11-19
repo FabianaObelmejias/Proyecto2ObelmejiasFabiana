@@ -4,6 +4,8 @@
  */
 package EDD;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author obelm
@@ -18,7 +20,6 @@ public class Cola {
         this.cola = this.cabeza = null;
         this.size = 0;
     }
-    
     
     public Nodo getCola() {
         return cola;
@@ -40,7 +41,6 @@ public class Cola {
         return size;
     }
 
-      
     public void setSize(int size) {
         this.size = size;
     }
@@ -49,25 +49,41 @@ public class Cola {
         return this.cabeza == null;
     }
     
-    public void encolar(Object dato){ 
+    public void encolar(Object dato){
         Nodo pNew = new Nodo(dato);
-        if(!this.isEmpty()){
+        if(this.isEmpty()){
             this.setCabeza(pNew);
             this.setCola(pNew);
         }else{
-            this.cola.setpNext(pNew);
-            this.setCola(pNew);
-    }
+           this.cola.setpNext(pNew);
+           this.setCola(pNew);
+        }
         size++;
     }
     
+    
     public Object desencolar(){
-        
+        if(!this.isEmpty()){
+           Object eliminar = this.cabeza.getDato();
+           this.setCabeza(this.cabeza.getpNext());
+           return eliminar;
+        }
+        return null;
     }
     
-
     public void mostrar(){
-        
-    }
-
+        if(!this.isEmpty()){
+            String listaString = "";
+            
+            Nodo temp = this.cabeza;
+            while(temp != null){
+                listaString += temp.getDato() + "\n";
+                temp = temp.getpNext();
+            }
+            
+            JOptionPane.showMessageDialog(null, listaString);
+        }else{
+            JOptionPane.showMessageDialog(null, "La lista esta vacia.");
+     }
+    }
 }
