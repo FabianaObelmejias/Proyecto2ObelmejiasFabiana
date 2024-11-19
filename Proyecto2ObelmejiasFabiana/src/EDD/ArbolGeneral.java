@@ -24,6 +24,21 @@ public class ArbolGeneral {
         this.raiz = raiz;
     }
     
+    public boolean isEmpty(){
+        return this.raiz == null;
+    }
+    
+    public NodoArbol crearRaiz(Object dato){//primero creo la raiz y despues le agrego los hijos
+        this.raiz = new NodoArbol(dato);
+        return this.raiz;
+        
+    }
+    
+    public NodoArbol agregarHijo(NodoArbol padre, Object dato){
+        NodoArbol hijo = new NodoArbol(dato);
+        padre.agregarHijo(hijo);
+        return hijo;
+    }
     
     
     
