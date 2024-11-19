@@ -93,7 +93,8 @@ public class ArbolGeneral{
                 }
             }
 
-            JOptionPane.showMessageDialog(null, arbolStr);
+            System.out.println(arbolStr);
+
 
         }
     }
