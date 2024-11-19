@@ -4,6 +4,9 @@
  */
 package EDD;
 
+import Modelo.Persona;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author obelm
@@ -31,5 +34,29 @@ public class HashTable {
     public void insertar(Object clave, Object dato){
         int indice = hash(clave);//busco el indice que viene definido por la funcion hash, el indice me va a retornar un entero
         Lista listaEnIndice = tabla[indice]; //busco cual es ese indice
-    }
-}
+        
+        //¿como se si la persona ya existe? me valgo del BUSCAR que tengo en lista
+        
+        if(!listaEnIndice.buscar(dato)){
+            listaEnIndice.insertarFinal(dato);
+            JOptionPane.showMessageDialog(null, "Elemento agregado");
+            }
+        }
+    
+        public Object buscar(Object clave){
+            int indice = hash(clave);
+            Lista listaEnIndice = tabla[indice];
+            
+            Nodo temp = listaEnIndice.getpFirst();
+            while(temp != null){
+                Persona personaActual = (Persona) temp.getDato();
+                if (personaActual.nombreUnico().equalsIgnoreCase((String) clave)){
+                    return personaActual;
+                }
+                
+                temp = temp.getpNext();
+                
+            }
+            return null;
+        }
+        }
