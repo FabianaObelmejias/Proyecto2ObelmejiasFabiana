@@ -9,5 +9,13 @@ package EDD;
  * @author obelm
  */
 public class HashTable {
+    private Lista[] tabla; //es mi primer atributo, es basicamente un arreglo de listas
+    private int capacidad;
+
+    public HashTable(int capacidad) {
+        this.capacidad = capacidad;
+        this.tabla = new Lista(capacidad);
+    }
+    //Esto me resulta en un arreglo pero en cada funcion del arreglo no hay una lista sino que esta vacia
     
 }
