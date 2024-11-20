@@ -32,8 +32,8 @@ public class CargarArchivo {
     public void setArbolGenealogico(ArbolGenealogico arbolGenealogico) {
         this.arbolGenealogico = arbolGenealogico;
     }
-
-    public void cargar(String rutaArchivo) {
+    
+     public void cargar(String rutaArchivo) {
         try (FileReader reader = new FileReader(rutaArchivo)) {
             Gson gson = new Gson();
             JsonObject jsonObj = gson.fromJson(reader, JsonObject.class);//con esto puedo iterar sobre el Json
@@ -52,7 +52,7 @@ public class CargarArchivo {
         }
     }
     
-    private void agregarHashTable(JsonObject personaObj) {
+      private void agregarHashTable(JsonObject personaObj) {
         String nombreCompleto = personaObj.keySet().iterator().next();
         JsonArray atributos = personaObj.getAsJsonArray(nombreCompleto);
 
@@ -60,10 +60,6 @@ public class CargarArchivo {
             String clave = personaNueva.getNombreCompleto() +" "+ personaNueva.getNumeral();
             this.arbolGenealogico.getHashtable().insertar(clave, personaNueva);
         }
-    }
-
-        
-    
     private Persona crearPersona(String nombreCompleto, JsonArray atributos) {
         String numeral = null;
         String padre = null;
@@ -111,4 +107,4 @@ public class CargarArchivo {
         }
         return new Persona(nombreCompleto, numeral, padre, madre, mote, titulo, esposa, colorOjos, colorCabello, comentariosVida, comentariosMuerte);
     }
-
+}

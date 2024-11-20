@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Funciones.CargarArchivo;
 import Funciones.FileChooser;
 import Modelo.ArbolGenealogico;
 
