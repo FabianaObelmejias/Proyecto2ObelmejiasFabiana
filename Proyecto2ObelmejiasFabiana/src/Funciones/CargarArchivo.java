@@ -70,6 +70,40 @@ public class CargarArchivo {
         String colorCabello = null;
         String comentariosVida = null;
         String comentariosMuerte = null;
-
+        
+        //le debo pasar el atributo
+        for (JsonElement atributoElem : atributos) {//ahora estoy iterando dentro de atributos
+            //¿qué voy a hacer dentro del iterador?
+            JsonObject atributo = atributoElem.getAsJsonObject();
+            if(atributo.has("Of his name")){ //de aqui en adelante debo hacer o mismo con todos
+                numeral = atributo.get("Of his name").getAsString();
+            }else if(atributo.has("Born to")){
+                String parent = atributo.get("Born to").getAsString();
+                if(padre == null){
+                    padre = parent;
+                }else{
+                    madre = parent;
+                }
+            }else if(atributo.has("Known throughout as")){
+               mote = atributo.get("Known throughout as").getAsString();
+            }else if(atributo.has("Held title")){
+                titulo = atributo.get("Held title").getAsString();
+            }else if(atributo.has("Wed to")){
+                esposa = atributo.get("Wed to").getAsString();
+            }else if(atributo.has("Of eyes")){
+                 colorOjos = atributo.get("Of eyes").getAsString();
+            }else if(atributo.has("of hair")){
+                colorCabello = atributo.get("of hair").getAsString();
+            }else if(atributo.has("of hair")){
+                colorCabello = atributo.get("of hair").getAsString();
+            }else if(atributo.has("of hair")){
+                colorCabello = atributo.get("of hair").getAsString();
+            }else if(atributo.has("Notes")){
+                comentariosVida = atributo.get("Notes").getAsString();
+            }else if(atributo.has("Fate")){
+                comentariosMuerte = atributo.get("Fate").getAsString();
+            }
+        }
+        return new Persona(nombreCompleto, numeral, padre, madre, mote, titulo, esposa, colorOjos, colorCabello, comentariosVida, comentariosMuerte);
     }
 }
