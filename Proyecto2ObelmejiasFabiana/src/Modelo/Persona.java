@@ -36,6 +36,12 @@ public class Persona {
         this.comentariosMuerte = comentariosMuerte;
     }
 
+    public Persona(String nombreCompleto, String numeral, String padre, String titulo){
+        this.nombreCompleto = nombreCompleto;
+        this.numeral = numeral;
+        this.padre = padre;
+        this.titulo = titulo;
+    }
     public String getComentariosMuerte() {
         return comentariosMuerte;
     }
