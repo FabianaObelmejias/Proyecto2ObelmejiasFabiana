@@ -21,6 +21,23 @@ public class ArbolGenealogico {
         this.hashtable = hashtable;
     }
     
+    public ArbolGeneral getArbol() {
+        return arbol;
+    }
+
+    public void setArbol(ArbolGeneral arbol) {
+        this.arbol = arbol;
+    }
+
+    public HashTable getHashtable() {
+        return hashtable;
+    }
+
+    public void setHashtable(HashTable hashtable) {
+        this.hashtable = hashtable;
+    }
+    
+    
     //es necesario agregar una persona
     public void agregarPersona(Persona persona){
         
@@ -45,4 +62,9 @@ public class ArbolGenealogico {
     public Lista opcionesDeGeneracion(){
         return null;
     }
+
+   
+    
+    
+    
 }
