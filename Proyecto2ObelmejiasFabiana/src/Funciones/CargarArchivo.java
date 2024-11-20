@@ -5,6 +5,7 @@
 package Funciones;
 
 import Modelo.ArbolGenealogico;
+import Modelo.Persona;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -40,7 +41,8 @@ public class CargarArchivo {
                 JsonArray miembros = jsonObj.getAsJsonArray(nombreCasa); //ya que tengo todos los values, puedo iterar sobre cada uno de los miembros
                 for (JsonElement miembro : miembros) {
                     JsonObject personaObj = miembro.getAsJsonObject();
-                    
+                    this.agregarHashTable(personaObj);
+
                 }
             }
 
@@ -48,9 +50,26 @@ public class CargarArchivo {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
     }
+    
+    private void agregarHashTable(JsonObject personaObj) {
+        String nombreCompleto = personaObj.keySet().iterator().next();
+        JsonArray atributos = personaObj.getAsJsonArray(nombreCompleto);
 
+        Persona personaNueva = crearPersona(nombreCompleto, atributos);
+        
+        }
+    
+    private Persona crearPersona(String nombreCompleto, JsonArray atributos) {
+        String numeral = null;
+        String padre = null;
+        String madre = null;
+        String mote = null;
+        String titulo = null;
+        String esposa = null;
+        String colorOjos = null;
+        String colorCabello = null;
+        String comentariosVida = null;
+        String comentariosMuerte = null;
 
-
-
-
+    }
 }
