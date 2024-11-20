@@ -15,6 +15,9 @@ public class Iniciar extends javax.swing.JFrame {
      */
     public Iniciar() {
         initComponents();
+        this.setVisible(true);
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -26,21 +29,47 @@ public class Iniciar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        bienvenidos = new javax.swing.JLabel();
+        empezar = new javax.swing.JButton();
+        salida = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bienvenidos.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
+        bienvenidos.setText("Bienvenidos");
+        jPanel1.add(bienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+
+        empezar.setText("Empezar");
+        jPanel1.add(empezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 130, 300, -1));
+
+        salida.setText("x");
+        salida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salidaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salidaActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_salidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +107,9 @@ public class Iniciar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bienvenidos;
+    private javax.swing.JButton empezar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton salida;
     // End of variables declaration//GEN-END:variables
 }
