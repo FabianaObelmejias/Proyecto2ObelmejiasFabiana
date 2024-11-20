@@ -4,10 +4,26 @@
  */
 package Funciones;
 
+import Modelo.ArbolGenealogico;
+
 /**
  *
  * @author obelm
  */
 public class CargarArchivo {
-    
+    private ArbolGenealogico arbolGenealogico;
+
+    public CargarArchivo(ArbolGenealogico arbolGenealogico){
+        this.arbolGenealogico = arbolGenealogico;
+    }
+
+    public ArbolGenealogico getArbolGenealogico() {
+        return arbolGenealogico;
+    }
+
+    public void setArbolGenealogico(ArbolGenealogico arbolGenealogico) {
+        this.arbolGenealogico = arbolGenealogico;
+    }
+
+
 }
