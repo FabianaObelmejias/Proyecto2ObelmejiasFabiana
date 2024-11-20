@@ -56,8 +56,12 @@ public class CargarArchivo {
         JsonArray atributos = personaObj.getAsJsonArray(nombreCompleto);
 
         Persona personaNueva = crearPersona(nombreCompleto, atributos);
-        
+            String clave = personaNueva.getNombreCompleto() +" "+ personaNueva.getNumeral();
+            this.arbolGenealogico.getHashtable().insertar(clave, personaNueva);
         }
+    }
+
+        
     
     private Persona crearPersona(String nombreCompleto, JsonArray atributos) {
         String numeral = null;
@@ -106,4 +110,4 @@ public class CargarArchivo {
         }
         return new Persona(nombreCompleto, numeral, padre, madre, mote, titulo, esposa, colorOjos, colorCabello, comentariosVida, comentariosMuerte);
     }
-}
+
