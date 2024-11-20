@@ -4,15 +4,20 @@
  */
 package Interfaces;
 
+import Funciones.FileChooser;
+import Modelo.ArbolGenealogico;
+
 /**
  *
  * @author obelm
  */
 public class Iniciar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Iniciar
-     */
+    private FileChooser fileChooser = new FileChooser();
+    public static ArbolGenealogico arbolGenealogico;
+    
+    
+    
     public Iniciar() {
         initComponents();
         this.setVisible(true);
@@ -43,6 +48,11 @@ public class Iniciar extends javax.swing.JFrame {
         jPanel1.add(bienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
 
         empezar.setText("Empezar");
+        empezar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empezarActionPerformed(evt);
+            }
+        });
         jPanel1.add(empezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 130, 300, -1));
 
         salida.setText("x");
@@ -70,6 +80,14 @@ public class Iniciar extends javax.swing.JFrame {
     private void salidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salidaActionPerformed
         System.exit(0);
     }//GEN-LAST:event_salidaActionPerformed
+
+    private void empezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empezarActionPerformed
+        String rutaArchivo = fileChooser.abrirArchivo(this);
+        CargarArchivo cargar = new CargarArchivo();
+        cargar.cargar(rutaArchivo);
+        arbolGenealogico = cargar.getArbolGenealogico();
+        arbolGenealogico.getHashtable().mostrar();
+    }//GEN-LAST:event_empezarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -17,8 +17,8 @@ public class ArbolGenealogico {
     private HashTable hashtable;
 
     public ArbolGenealogico() {
-        this.arbol = arbol;
-        this.hashtable = hashtable;
+        this.arbol = new ArbolGeneral();
+        this.hashtable = new HashTable(100);
     }
     
     public ArbolGeneral getArbol() {
