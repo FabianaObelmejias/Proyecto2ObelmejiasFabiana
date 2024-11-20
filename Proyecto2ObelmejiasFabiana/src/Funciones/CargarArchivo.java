@@ -20,9 +20,10 @@ import java.io.IOException;
 public class CargarArchivo {
     private ArbolGenealogico arbolGenealogico;
 
-    public CargarArchivo(ArbolGenealogico arbolGenealogico){
-        this.arbolGenealogico = arbolGenealogico;
+    public CargarArchivo() {
+        this.arbolGenealogico = new ArbolGenealogico();
     }
+
 
     public ArbolGenealogico getArbolGenealogico() {
         return arbolGenealogico;

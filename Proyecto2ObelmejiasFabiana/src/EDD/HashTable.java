@@ -40,7 +40,7 @@ public class HashTable {
         //¿como se si la persona ya existe? me valgo del BUSCAR que tengo en lista
         if (!listaEnIndice.buscar(dato)) {
             listaEnIndice.insertarFinal(dato);
-            JOptionPane.showMessageDialog(null, "Elemento agregado");
+            
         }
     }
 

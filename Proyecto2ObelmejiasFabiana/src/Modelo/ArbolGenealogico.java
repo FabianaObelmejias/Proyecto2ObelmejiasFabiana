@@ -16,7 +16,7 @@ public class ArbolGenealogico {
     private ArbolGeneral arbol;
     private HashTable hashtable;
 
-    public ArbolGenealogico(ArbolGeneral arbol, HashTable hashtable) {
+    public ArbolGenealogico() {
         this.arbol = arbol;
         this.hashtable = hashtable;
     }
