@@ -4,26 +4,17 @@
  */
 package Funciones;
 
-/**
- *
- * @author obelm
- */
 public class Validar {
     private boolean validarnumeros(String num){
-        return num.matches("[0-9] *");
-        
+        return num.matches("[0-9]*");
     }
     
-    public int ValidarNumeros(String numero){
-        if(validarnumeros(numero) == true){
+    public int validarNumeros(String numero){
+        if(validarnumeros(numero)){
             int num = Integer.parseInt(numero);
             return num;
         }else{
             return -1;
         }
-    }
-
-    public int validarNumeros(String indexStr) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

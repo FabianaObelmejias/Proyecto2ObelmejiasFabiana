@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class HashTable {
 
-    private Lista[] tabla; //es mi primer atributo, es basicamente un arreglo de listas
+    private Lista[] tabla;
     private int capacidad;
 
     public HashTable(int capacidad) {
@@ -22,91 +22,106 @@ public class HashTable {
         this.inicializar();
     }
 
-    //Esto me resulta en un arreglo pero en cada funcion del arreglo no hay una lista sino que esta vacia
     private void inicializar() {
         for (int i = 0; i < this.capacidad; i++) {
             tabla[i] = new Lista();
         }
     }
 
-    private int hash(Object clave) { //esta fucnion me devuelve el indice que voy a insertar en la tabla
-        return Math.abs(clave.hashCode()) % capacidad; //manejo la posible colision con listas
+    private int hash(Object clave) {
+        return Math.abs(clave.hashCode()) % capacidad;
     }
 
     public void insertar(Object clave, Object dato) {
-        int indice = hash(clave);//busco el indice que viene definido por la funcion hash, el indice me va a retornar un entero
-        Lista listaEnIndice = tabla[indice]; //busco cual es ese indice
+        int indice = hash(clave);
+        Lista listaEnIndice = tabla[indice];
 
-        //¿como se si la persona ya existe? me valgo del BUSCAR que tengo en lista
         if (!listaEnIndice.buscar(dato)) {
             listaEnIndice.insertarFinal(dato);
-            
         }
     }
 
-    public Object buscar(Object clave) {
+    public Object buscar(String clave) {
         int indice = hash(clave);
         Lista listaEnIndice = tabla[indice];
 
         if (!listaEnIndice.isEmpty()) {
-
             Nodo temp = listaEnIndice.getpFirst();
             while (temp != null) {
                 Persona personaActual = (Persona) temp.getDato();
-                if (personaActual.nombreUnico().equalsIgnoreCase((String) clave)) {
+                if (personaActual.nombreUnico().equalsIgnoreCase(clave)) {
                     return personaActual;
                 }
 
                 temp = temp.getpNext();
-
             }
-            return null;
 
+            return null;
         }
-        
+
         return null;
     }
-    
-    public Lista buscarNombre(String nombre){
+
+    public Lista buscarNombre(String nombre) {
         Lista resultado = new Lista();
-        
-        for(int i = 0; i< this.capacidad; i++){
-            if(!tabla[i].isEmpty()){
+
+        for (int i = 0; i < this.capacidad; i++) {
+            if (!tabla[i].isEmpty()) {
                 Nodo temp = tabla[i].getpFirst();
-                while(temp != null){
-                    Persona personaAct = (Persona)temp.getDato();
-                    if(personaAct.getMote() != null){
-                        resultado.insertarFinal(personaAct);
-                    }else{
-                       if(personaAct.getNombreCompleto().contains(nombre)){
-                           String nombreNumeral = personaAct.getNombreCompleto() + " " + personaAct.getNumeral();
-                           resultado.insertarFinal(personaAct);
-                       }
+                while (temp != null) {
+                    Persona personaAct = (Persona) temp.getDato();
+                    if (personaAct.getMote() != null) {
+                        if (personaAct.getMote().toLowerCase().contains(nombre.toLowerCase())) {
+                            resultado.insertarFinal(personaAct);
+                        } else if (personaAct.getNombreCompleto().toLowerCase().contains(nombre.toLowerCase())) {
+                            resultado.insertarFinal(personaAct);
+                        }
+                    } else {
+                        if (personaAct.getNombreCompleto().toLowerCase().contains(nombre.toLowerCase())) {
+                            resultado.insertarFinal(personaAct);
+                        }
                     }
                     temp = temp.getpNext();
                 }
-                
             }
         }
+
         return resultado;
-        
     }
-    
-    
-    
-    //DEBO utilizar el destruir para reinicializar todas las listas que estan en la tabla en caso tal de ser necesario
-    public void destruir(){
-        for(int i = 0; i < this.capacidad; i++)
-            tabla[i] = new Lista();
-    }
-    
-    //debe existir una funcion que muestre el HASHTABLE
-    public void mostrar(){
-        for (int i = 0; i < capacidad; i++) {
-            if(!tabla[i].isEmpty()){
-                System.out.println("\nIndice" + i+":");
+
+    public Lista buscarTitulo(String titulo) {
+        Lista personasFiltradas = new Lista();
+        for (int i = 0; i < this.capacidad; i++) {
+            if (!tabla[i].isEmpty()) {
                 Nodo temp = tabla[i].getpFirst();
-                while(temp!=null){
+                while (temp != null) {
+                    Persona personaAct = (Persona) temp.getDato();
+                    if (personaAct.getTitulo() != null) {
+                        if (personaAct.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
+                            personasFiltradas.insertarFinal(personaAct);
+                        }
+                    }
+                    temp = temp.getpNext();
+                }
+
+            }
+        }
+
+        return personasFiltradas;
+    }
+
+    public void destruir() {
+        for (int i = 0; i < this.capacidad; i++) {
+            tabla[i] = new Lista();
+        }
+    }
+
+    public void mostrar() {
+        for (int i = 0; i < capacidad; i++) {
+            if (!tabla[i].isEmpty()) {
+                System.out.println("\nInidice" + i + ":");
+                Nodo temp = tabla[i].getpFirst();
+                while (temp != null) {
                     Persona personaAct = (Persona) temp.getDato();
                     System.out.print(personaAct.nombreUnico() + "->");
                     temp = temp.getpNext();

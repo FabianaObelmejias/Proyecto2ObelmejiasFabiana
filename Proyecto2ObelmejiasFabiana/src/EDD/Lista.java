@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class Lista {
     private Nodo pFirst;
-    private int size; 
+    private int size;
 
     public Lista() {
         this.pFirst = null;
@@ -34,23 +34,26 @@ public class Lista {
     public void setSize(int size) {
         this.size = size;
     }
-    
+   
     public boolean isEmpty(){
         return this.pFirst == null;
-        
     }
     
     public void insertarFinal(Object dato){
+        //Crear un nodo con el dato a insertar
         Nodo pNew = new Nodo(dato);
         if(this.isEmpty()){
-            this.setpFirst(pNew);
-            
+            //Como la lista es vacio pFirts sera pNew
+           this.setpFirst(pNew);
         }else{
+            //Iterar en la lista hasta llegar al ultimo
             Nodo temp = this.pFirst;
+            //Sabre que llegue al ultimo cuando siguiente sea null
             while(temp.getpNext() != null){
+                //temp ahora sera su siguiente
                 temp = temp.getpNext();
             }
-            
+            //Cuando temp llegue al ultimo, le digo que su siguiente es pNew
             temp.setpNext(pNew);
         }
         this.size ++;
@@ -58,66 +61,74 @@ public class Lista {
     
     public void eliminarFinal(){
         if(!this.isEmpty()){
-            if(this.size == 1){
-                this.setpFirst(null);
-            }else{
-                Nodo temp = this.pFirst;
-                while(temp.getpNext().getpNext() != null){
-                    temp = temp.getpNext();
-                }
-                temp.setpNext(null);
-            }
-            size --; //independientemente entre en el if o en el else le va a restar al tamaño
+           if(this.size == 1){
+               this.setpFirst(null);
+           }else{
+               Nodo temp = this.pFirst;
+               while(temp.getpNext().getpNext() != null){
+                   temp = temp.getpNext();
+               }
+               temp.setpNext(null);
+           }
+           size--;
+        }
     }
-}
     
     public boolean buscar(Object dato){
         if(!this.isEmpty()){
             if(this.size == 1){
                 return this.pFirst.getDato() == dato;
-            }else{//debo iterar sobre la lista
-                Nodo temp = this.pFirst;
-                while(temp != null){
-                    if(temp.getDato() == dato){
-                        return true;
-                    }
-                    temp = temp.getpNext();
-                }
+            }else{
+               Nodo temp = this.pFirst;
+               while(temp != null){
+                   if(temp.getDato() == dato){
+                       return true;
+                   }
+                   temp = temp.getpNext();
+               }
+               return false;
             }
-        }
+        } 
         return false;
     }
-        
-    /**
-     *
-     */
+    
+    public Object getValor(int posicion){
 
-    /**
-     *
-     */
+        if(posicion>=0 && posicion<size){
+            
+            if (posicion == 0) {
+                return pFirst.getDato();
+            }else{
+                Nodo aux = pFirst;
+                for (int i = 0; i < posicion; i++) {
+                    aux = aux.getpNext();
+                }
+                return aux.getDato();
+            }
+        }
+        return null;
+    }
+   
+    
     public void mostrar(){
-
         if(!this.isEmpty()){
             String listaString = "";
             
-            //empiezo a recorrer
             Nodo temp = this.pFirst;
             while(temp != null){
                 listaString += temp.getDato() + "\n";
-                
                 temp = temp.getpNext();
             }
             
             JOptionPane.showMessageDialog(null, listaString);
         }else{
-            JOptionPane.showMessageDialog(null, "La lista está vacía.");
+            JOptionPane.showMessageDialog(null, "La lista esta vacia.");
         }
     }
-
-
-    public void destruir(){ //vacía la lista por completo
-        this.pFirst = null;
-        this.size = 0; 
-        
+    
+    public void destruir(){
+       this.pFirst = null;
+       this.size = 0;
     }
+    
 }

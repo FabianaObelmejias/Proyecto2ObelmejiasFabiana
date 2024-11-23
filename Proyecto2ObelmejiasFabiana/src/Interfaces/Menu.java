@@ -4,7 +4,9 @@
  */
 package Interfaces;
 
+import Funciones.MostrarArbol;
 import Funciones.Validar;
+import static Interfaces.Iniciar.arbolGenealogico;
 
 /**
  *
@@ -13,11 +15,13 @@ import Funciones.Validar;
 public class Menu extends javax.swing.JFrame {
 
     public static Validar validar = new Validar();
+    
     public Menu() {
         initComponents();
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.nombreCasaSist.setText(arbolGenealogico.getNombreLinaje());
     }
 
     /**
@@ -34,14 +38,23 @@ public class Menu extends javax.swing.JFrame {
         nombreCasaSist = new javax.swing.JLabel();
         buscarNombreBoton = new javax.swing.JButton();
         buscarTituloBoton = new javax.swing.JButton();
+        ListarGeneracion = new javax.swing.JButton();
+        mostrarAntepasados = new javax.swing.JButton();
+        CargarNuevoLinaje = new javax.swing.JButton();
+        MostrarArbol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setText("MENU PRINCIPAL");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
         nombreCasaSist.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         nombreCasaSist.setText("NOMBRE DE LA CASA");
+        jPanel1.add(nombreCasaSist, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
         buscarNombreBoton.setText("Buscar Por Nombre");
         buscarNombreBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -49,52 +62,44 @@ public class Menu extends javax.swing.JFrame {
                 buscarNombreBotonActionPerformed(evt);
             }
         });
+        jPanel1.add(buscarNombreBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
 
-        buscarTituloBoton.setText("Buscar por Título");
+        buscarTituloBoton.setText("Buscar por Titulo");
+        buscarTituloBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarTituloBotonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarTituloBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nombreCasaSist, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(138, 138, 138))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(buscarNombreBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                .addComponent(buscarTituloBoton)
-                .addGap(93, 93, 93))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombreCasaSist, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscarNombreBoton)
-                    .addComponent(buscarTituloBoton))
-                .addContainerGap(207, Short.MAX_VALUE))
-        );
+        ListarGeneracion.setText("Listar Generacion");
+        ListarGeneracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarGeneracionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ListarGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 130, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        mostrarAntepasados.setText("Mostrar Antepasados");
+        mostrarAntepasados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarAntepasadosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(mostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 150, -1));
+
+        CargarNuevoLinaje.setText("Cargar Nuevo Linaje");
+        jPanel1.add(CargarNuevoLinaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 150, -1));
+
+        MostrarArbol.setText("Mostrar Arbol");
+        MostrarArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarArbolActionPerformed(evt);
+            }
+        });
+        jPanel1.add(MostrarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 150, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -103,6 +108,27 @@ public class Menu extends javax.swing.JFrame {
         BuscarNombre v1 = new BuscarNombre();
         this.dispose();
     }//GEN-LAST:event_buscarNombreBotonActionPerformed
+
+    private void buscarTituloBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTituloBotonActionPerformed
+        BuscarTitulo v2 = new BuscarTitulo();
+        this.dispose();
+    }//GEN-LAST:event_buscarTituloBotonActionPerformed
+
+    private void ListarGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarGeneracionActionPerformed
+        ListaGeneracion v3 = new ListaGeneracion();
+        this.dispose();
+    }//GEN-LAST:event_ListarGeneracionActionPerformed
+
+    private void MostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarArbolActionPerformed
+        System.setProperty("org.graphstream.ui", "swing");
+        MostrarArbol verArbol = new MostrarArbol(arbolGenealogico.getArbol());
+        verArbol.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MostrarArbolActionPerformed
+
+    private void mostrarAntepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarAntepasadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mostrarAntepasadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,10 +166,14 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CargarNuevoLinaje;
+    private javax.swing.JButton ListarGeneracion;
+    private javax.swing.JButton MostrarArbol;
     private javax.swing.JButton buscarNombreBoton;
     private javax.swing.JButton buscarTituloBoton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton mostrarAntepasados;
     private javax.swing.JLabel nombreCasaSist;
     // End of variables declaration//GEN-END:variables
 }

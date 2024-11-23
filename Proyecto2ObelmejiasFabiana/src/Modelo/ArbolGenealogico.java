@@ -4,10 +4,11 @@
  */
 package Modelo;
 
-import EDD.ArbolGeneral;
+import EDD.ArbolGnral;
 import EDD.HashTable;
 import EDD.Lista;
 import EDD.Nodo;
+import EDD.NodoArbol;
 import static Interfaces.Iniciar.arbolGenealogico;
 
 /**
@@ -15,50 +16,64 @@ import static Interfaces.Iniciar.arbolGenealogico;
  * @author obelm
  */
 public class ArbolGenealogico {
-    private ArbolGeneral arbol;
-    private HashTable hashtable;
+
+    private ArbolGnral arbol;
+    private HashTable hashTable;
+    private String nombreLinaje;
 
     public ArbolGenealogico() {
-        this.arbol = new ArbolGeneral();
-        this.hashtable = new HashTable(100);
+        this.arbol = new ArbolGnral();
+        this.hashTable = new HashTable(100);
     }
-    
-    public ArbolGeneral getArbol() {
+
+    public ArbolGnral getArbol() {
         return arbol;
     }
 
-    public void setArbol(ArbolGeneral arbol) {
+    public void setArbol(ArbolGnral arbol) {
         this.arbol = arbol;
     }
 
-    public HashTable getHashtable() {
-        return hashtable;
+    public HashTable getHashTable() {
+        return hashTable;
     }
 
-    public void setHashtable(HashTable hashtable) {
-        this.hashtable = hashtable;
+    public void setHashTable(HashTable hashTable) {
+        this.hashTable = hashTable;
     }
-    
-    
-    //es necesario agregar una persona
-    public void agregarPersona(Persona persona){
-        
+
+    public String getNombreLinaje() {
+        return nombreLinaje;
     }
-    
-    public void mostrarAntepasados(Persona persona){
-        
+
+    public void setNombreLinaje(String nombreLinaje) {
+        this.nombreLinaje = nombreLinaje;
     }
-    
+
+    public void mostrarAntepasados(Persona persona) {
+
+    }
+
     public Persona[] buscarNombre(String nombre) {
 
         Lista resultados = arbolGenealogico.getHashTable().buscarNombre(nombre);
         if (!resultados.isEmpty()) {
-           return this.convertirResultadosArreglo(resultados);
+            return this.convertirResultadosArreglo(resultados);
         }
-        
+
         return null;
     }
-    
+
+    public Persona[] buscarTitulo(String titulo) {
+
+        Lista resultados = arbolGenealogico.getHashTable().buscarTitulo(titulo);
+        if (!resultados.isEmpty()) {
+            return this.convertirResultadosArreglo(resultados);
+        }
+
+        return null;
+    }
+
     public Persona[] convertirResultadosArreglo(Lista resultados) {
         Persona[] resultadosStr = new Persona[resultados.getSize()];
 
@@ -74,16 +89,17 @@ public class ArbolGenealogico {
         return resultadosStr;
 
     }
-    public String mostrarResultados(Persona[] resultado){
+
+    public String mostrarResultados(Persona[] resultado) {
         String resultStr = "Resultados de la Busqueda:\n";
         for (int i = 0; i < resultado.length; i++) {
-             
+
             resultStr += i + " " + "Mote: " + resultado[i].getMote() + " Nombre: " + resultado[i].getNombreCompleto() + " " + resultado[i].getNumeral() + "\n";
         }
-        
+
         return resultStr;
     }
-    
+
     public String detallesPersona(Persona persona) {
         String clave = "";
         if (persona.getMote() != null) {
@@ -92,34 +108,57 @@ public class ArbolGenealogico {
             clave = persona.getNombreCompleto() + " " + persona.getNumeral();
         }
 
-        return this.hashtable.buscar(clave).toString();
+        return this.hashTable.buscar(clave).toString();
     }
 
+    public String mostrarGeneracion(int nivel) {
+        Lista generacion = this.arbol.obtenerNodosEnNivel(nivel);
+        String generacionStr = "Generacion " + nivel + ":\n";
+        String separacion = "==================================";
 
-    public void buscarTitulo(String titulo) {
-        
-    }
+        Nodo temp = generacion.getpFirst();
+        while (temp != null) {
+            Persona personaActual = (Persona) temp.getDato();
+            generacionStr += separacion + "\n" + personaActual.toString() + "\n" + separacion + "\n";
+            temp = temp.getpNext();
+        }
 
-    public void mostrarGeneracion(int generacion) {
-
+        return generacionStr;
     }
 
     public Lista opcionesDeGeneracion() {
-        return null;
-    }
-    
+        Lista generaciones = new Lista();
+        int max = this.arbol.maximoNivel();
+        for (int i = 0; i < max; i++) {
+            int numero = i + 1;
+            String generacionActual = "Generacion " + numero;
+            generaciones.insertarFinal(generacionActual);
+        }
 
-    public Object getHashTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-
-    public String mostrarResultadoos(Persona[] arregloResultado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return generaciones;
     }
 
-   
-    
-    
-    
+    public ArbolGnral descendencia(Persona[] arreglo, int index) {
+        if (index >= 0 && index < arreglo.length) {
+            String clave = "";
+
+            if (arreglo[index].getMote() != null) {
+                clave = arreglo[index].getMote();
+            } else {
+                clave = arreglo[index].getNombreCompleto() + " " + arreglo[index].getNumeral();
+            }
+
+            NodoArbol raiz2 = this.getArbol().buscarPorNombreClave(clave);
+
+            ArbolGnral arbolDesc = new ArbolGnral();
+            arbolDesc.setRaiz(raiz2);
+
+            
+            return arbolDesc;
+        } else {
+           
+            return null;
+        }
+    }
+
 }

@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
  * @author obelm
  */
 public class Cola {
-    //recordar que la cola utiliza el mismo nodo que una lista simple
     private Nodo cola;
     private Nodo cabeza;
     private int size;

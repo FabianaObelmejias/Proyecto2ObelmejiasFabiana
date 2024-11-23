@@ -20,9 +20,7 @@ public class Nodo {
     public Nodo(Object dato) {
         this.dato = dato;
         this.pNext = null;
-        
-        
-}
+    }
 
     public Object getDato() {
         return dato;

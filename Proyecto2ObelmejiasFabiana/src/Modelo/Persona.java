@@ -9,7 +9,6 @@ package Modelo;
  * @author obelm
  */
 public class Persona {
-    //primero verifico que tipo de datos tengo en el Json
     private String nombreCompleto;
     private String numeral;
     private String padre;
@@ -17,12 +16,12 @@ public class Persona {
     private String mote;
     private String titulo;
     private String esposa;
-    private String colorOjos;
+    private String coloarOjos;
     private String colorCabello;
     private String comentariosVida;
     private String comentariosMuerte;
 
-    public Persona(String nombreCompleto, String numeral, String padre, String madre, String mote, String titulo, String esposa, String colorOjos, String colorCabello, String comentariosVida, String comentariosMuerte) {
+    public Persona(String nombreCompleto, String numeral, String padre, String madre, String mote, String titulo, String esposa, String coloarOjos, String colorCabello, String comentariosVida, String comentariosMuerte) {
         this.nombreCompleto = nombreCompleto;
         this.numeral = numeral;
         this.padre = padre;
@@ -30,18 +29,19 @@ public class Persona {
         this.mote = mote;
         this.titulo = titulo;
         this.esposa = esposa;
-        this.colorOjos = colorOjos;
+        this.coloarOjos = coloarOjos;
         this.colorCabello = colorCabello;
         this.comentariosVida = comentariosVida;
         this.comentariosMuerte = comentariosMuerte;
     }
-
-    public Persona(String nombreCompleto, String numeral, String padre, String titulo){
+    
+    public Persona(String nombreCompleto, String numeral, String padre, String titulo) {
         this.nombreCompleto = nombreCompleto;
         this.numeral = numeral;
         this.padre = padre;
         this.titulo = titulo;
     }
+
     public String getComentariosMuerte() {
         return comentariosMuerte;
     }
@@ -49,7 +49,7 @@ public class Persona {
     public void setComentariosMuerte(String comentariosMuerte) {
         this.comentariosMuerte = comentariosMuerte;
     }
-
+    
     public String getNombreCompleto() {
         return nombreCompleto;
     }
@@ -106,12 +106,12 @@ public class Persona {
         this.esposa = esposa;
     }
 
-    public String getColorOjos() {
-        return colorOjos;
+    public String getColoarOjos() {
+        return coloarOjos;
     }
 
-    public void setColorOjos(String colorOjos) {
-        this.colorOjos = colorOjos;
+    public void setColoarOjos(String coloarOjos) {
+        this.coloarOjos = coloarOjos;
     }
 
     public String getColorCabello() {
@@ -131,27 +131,26 @@ public class Persona {
     }
     
     public String nombreUnico(){
+        if(this.getMote() != null){
+           return this.getMote();
+        }
         return this.nombreCompleto + " " + this.numeral;
     }
-    
-    //es necesario retornar el toString, me sirve para todo lo que tenga que mostrar
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Información Completa: ");
-        sb.append("\nNombreCompleto: ").append(this.nombreUnico());
+        sb.append("Informacion Completa:");
+        sb.append("\nNombre Completo: ").append(this.nombreUnico());
         sb.append("\nPadre: ").append(padre);
         sb.append("\nMadre: ").append(madre);
         sb.append("\nMote: ").append(mote);
         sb.append("\nTitulo: ").append(titulo);
         sb.append("\nEsposa: ").append(esposa);
-        sb.append("\nColor de Ojos: ").append(colorOjos);
+        sb.append("\nColor de Ojos: ").append(coloarOjos);
         sb.append("\nColor de Cabello: ").append(colorCabello);
-        sb.append("\nComentarios de su Vida: ").append(comentariosVida);
+        sb.append("\ncomentarios de su Vida: ").append(comentariosVida);
         sb.append("\nComentarios de su Muerte: ").append(comentariosMuerte);
         return sb.toString();
-    }
-    
-    
-    
+    }    
 }

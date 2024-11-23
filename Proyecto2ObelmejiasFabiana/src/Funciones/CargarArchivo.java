@@ -4,6 +4,7 @@
  */
 package Funciones;
 
+import EDD.NodoArbol;
 import Modelo.ArbolGenealogico;
 import Modelo.Persona;
 import com.google.gson.Gson;
@@ -13,17 +14,16 @@ import com.google.gson.JsonObject;
 import java.io.FileReader;
 import java.io.IOException;
 
-/**
- *
- * @author obelm
- */
+
 public class CargarArchivo {
+
     private ArbolGenealogico arbolGenealogico;
+    private int errores = 0;
+    private int nombreRepetido = 0;
 
     public CargarArchivo() {
         this.arbolGenealogico = new ArbolGenealogico();
     }
-
 
     public ArbolGenealogico getArbolGenealogico() {
         return arbolGenealogico;
@@ -33,18 +33,47 @@ public class CargarArchivo {
         this.arbolGenealogico = arbolGenealogico;
     }
     
-     public void cargar(String rutaArchivo) {
+    public int getErrores() {
+        return errores;
+    }
+
+    public void setErrores(int errores) {
+        this.errores = errores;
+    }
+
+    public int getNombreRepetido() {
+        return nombreRepetido;
+    }
+
+    public void setNombreRepetido(int nombreRepetido) {
+        this.nombreRepetido = nombreRepetido;
+    }
+    
+    public void cargar(String rutaArchivo) {
         try (FileReader reader = new FileReader(rutaArchivo)) {
             Gson gson = new Gson();
-            JsonObject jsonObj = gson.fromJson(reader, JsonObject.class);//con esto puedo iterar sobre el Json
+            JsonObject jsonObj = gson.fromJson(reader, JsonObject.class);
             
             for (String nombreCasa : jsonObj.keySet()) {
-                JsonArray miembros = jsonObj.getAsJsonArray(nombreCasa); //ya que tengo todos los values, puedo iterar sobre cada uno de los miembros
+                JsonArray miembros = jsonObj.getAsJsonArray(nombreCasa);
+                arbolGenealogico.setNombreLinaje(nombreCasa);
                 for (JsonElement miembro : miembros) {
                     JsonObject personaObj = miembro.getAsJsonObject();
                     this.agregarHashTable(personaObj);
-
                 }
+            }
+            
+            
+            for (String nombreCasa : jsonObj.keySet()) {
+                JsonArray miembros = jsonObj.getAsJsonArray(nombreCasa);
+                for (JsonElement miembro : miembros) {
+                    JsonObject personaObj = miembro.getAsJsonObject();
+                    this.agregarArbol(personaObj);
+                }
+            }
+            
+            if(errores != 0 || nombreRepetido!= 0){
+                this.arbolGenealogico = null;
             }
 
         } catch (IOException e) {
@@ -52,14 +81,55 @@ public class CargarArchivo {
         }
     }
     
-      private void agregarHashTable(JsonObject personaObj) {
+    private void agregarArbol(JsonObject personaObj){
         String nombreCompleto = personaObj.keySet().iterator().next();
         JsonArray atributos = personaObj.getAsJsonArray(nombreCompleto);
 
         Persona personaNueva = crearPersona(nombreCompleto, atributos);
-            String clave = personaNueva.getNombreCompleto() +" "+ personaNueva.getNumeral();
-            this.arbolGenealogico.getHashtable().insertar(clave, personaNueva);
+        
+        
+        if (personaNueva.getPadre().equalsIgnoreCase("[Unknown]")){
+           this.arbolGenealogico.getArbol().crearRaiz(personaNueva);
+        }else{
+            if(personaNueva.getPadre().contains("of his name")){
+                personaNueva.setPadre(personaNueva.getPadre().replaceAll("of his name", "").replaceAll(",", "").trim());
+                
+                NodoArbol padre = this.arbolGenealogico.getArbol().buscarPorNombreClave(personaNueva.getPadre());
+                if(padre != null){
+                    if(this.arbolGenealogico.getArbol().agregarHijo(padre, personaNueva) == null){
+                        nombreRepetido++;
+                    }
+                }else{
+                   errores++; 
+                }
+            }else{
+                NodoArbol padre = this.arbolGenealogico.getArbol().buscarPorNombreClave(personaNueva.getPadre());
+                if(padre != null){
+                    if(this.arbolGenealogico.getArbol().agregarHijo(padre, personaNueva) == null){
+                        nombreRepetido++;
+                    }
+                }else{
+                    errores++;
+                }
+            }
         }
+    }
+
+    private void agregarHashTable(JsonObject personaObj) {
+        String nombreCompleto = personaObj.keySet().iterator().next();
+        JsonArray atributos = personaObj.getAsJsonArray(nombreCompleto);
+
+        Persona personaNueva = crearPersona(nombreCompleto, atributos);
+        
+        if(personaNueva.getMote() != null){
+            String clave = personaNueva.getMote();
+            this.arbolGenealogico.getHashTable().insertar(clave, personaNueva);
+        }else{
+            String clave = personaNueva.getNombreCompleto() +" "+ personaNueva.getNumeral();
+            this.arbolGenealogico.getHashTable().insertar(clave, personaNueva);
+        }
+    }
+
     private Persona crearPersona(String nombreCompleto, JsonArray atributos) {
         String numeral = null;
         String padre = null;
@@ -72,11 +142,9 @@ public class CargarArchivo {
         String comentariosVida = null;
         String comentariosMuerte = null;
         
-        //le debo pasar el atributo
-        for (JsonElement atributoElem : atributos) {//ahora estoy iterando dentro de atributos
-            //¿qué voy a hacer dentro del iterador?
+        for (JsonElement atributoElem : atributos) {
             JsonObject atributo = atributoElem.getAsJsonObject();
-            if(atributo.has("Of his name")){ //de aqui en adelante debo hacer o mismo con todos
+            if(atributo.has("Of his name")){
                 numeral = atributo.get("Of his name").getAsString();
             }else if(atributo.has("Born to")){
                 String parent = atributo.get("Born to").getAsString();

@@ -4,8 +4,11 @@
  */
 package Interfaces;
 
-import EDD.ArbolGeneral;
+import EDD.ArbolGnral;
+import EDD.Lista;
+import EDD.Nodo;
 import EDD.NodoArbol;
+import Funciones.MostrarArbol;
 import static Interfaces.Iniciar.arbolGenealogico;
 import static Interfaces.Menu.validar;
 import Modelo.Persona;
@@ -15,11 +18,11 @@ import javax.swing.JOptionPane;
  *
  * @author obelm
  */
+
 public class BuscarNombre extends javax.swing.JFrame {
 
-    
-    
     private Persona[] arregloResultado;
+
     public BuscarNombre() {
         initComponents();
         this.setVisible(true);
@@ -38,51 +41,25 @@ public class BuscarNombre extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        volver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         inputNombreB = new javax.swing.JTextField();
         buscarNombre = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        indexArray = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        volver = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         resultadosBusqueda = new javax.swing.JTextArea();
+        indexArray = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setText("Buscar por Nombre");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 22, -1, -1));
-
-        jLabel2.setText("Escriba el nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 66, 108, -1));
-        jPanel1.add(inputNombreB, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 88, 246, -1));
-
-        buscarNombre.setText("buscar");
-        buscarNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarNombreActionPerformed(evt);
-            }
-        });
-        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 88, -1, -1));
-
-        jLabel3.setText("Resultados");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 129, 67, -1));
-
-        jLabel4.setText("Ingrese el numero asociado a uno de los resultados para ver detalles");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 297, 373, -1));
-        jPanel1.add(indexArray, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 319, 255, -1));
-
-        jButton1.setText("ver detalles");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 353, 255, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, -1, -1));
 
         volver.setText("volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -90,29 +67,63 @@ public class BuscarNombre extends javax.swing.JFrame {
                 volverActionPerformed(evt);
             }
         });
-        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 388, -1, -1));
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 480, -1, -1));
+
+        jLabel2.setText("Escriba el nombre");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+        jPanel1.add(inputNombreB, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 240, -1));
+
+        buscarNombre.setText("buscar");
+        buscarNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarNombreActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 100, -1, -1));
+
+        jLabel3.setText("Resultados");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, -1, -1));
 
         resultadosBusqueda.setColumns(20);
         resultadosBusqueda.setRows(5);
         jScrollPane1.setViewportView(resultadosBusqueda);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 157, 216, 128));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 240, 170));
+        jPanel1.add(indexArray, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 260, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jButton1.setText("ver detalles");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 260, -1));
+
+        jLabel4.setText("Ingrese el numero asociado a uno de los resultados para ver detalles");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
+        String nombre = inputNombreB.getText();
+        arregloResultado = arbolGenealogico.buscarNombre(nombre);
+        if (arregloResultado != null) {
+            resultadosBusqueda.setText(arbolGenealogico.mostrarResultados(arregloResultado));
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron nombres o motes que coincidan con la busqueda");
+        }
+
+        inputNombreB.setText("");
+
+    }//GEN-LAST:event_buscarNombreActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        Menu menu = new Menu();
+        this.dispose();
+    }//GEN-LAST:event_volverActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String indexStr = indexArray.getText();
@@ -120,38 +131,23 @@ public class BuscarNombre extends javax.swing.JFrame {
         if (validar.validarNumeros(indexStr) != -1) {
             int index = validar.validarNumeros(indexStr);
 
-            String clave = "";
-
-            if (arregloResultado[index].getMote() != null) {
-                clave = arregloResultado[index].getMote();
+            ArbolGnral arbolDesc = arbolGenealogico.descendencia(arregloResultado, index);
+            if (arbolDesc != null) {
+                System.setProperty("org.graphstream.ui", "swing");
+                MostrarArbol verArbol = new MostrarArbol(arbolDesc);
+                verArbol.setVisible(true);
+                this.dispose();
+                //arbolDesc.mostrarPorNivel();
             } else {
-                clave = arregloResultado[index].getNombreCompleto() + " " + arregloResultado[index].getNumeral();
+                JOptionPane.showMessageDialog(null, "Indice invalido. El indice debe estar entre 0 y " + arregloResultado.length);
             }
-
-            NodoArbol raiz2 = arbolGenealogico.getArbol().buscarPorNombreClave(clave);
-            ArbolGeneral arbolDesc = new ArbolGeneral();
-            arbolDesc.setRaiz(raiz2);
-            arbolDesc.mostrarPorNivel();
-            
-        }else{
-            
+        } else {
             JOptionPane.showMessageDialog(null, "El input solo pueder un numero entero.");
-        
-}
+        }
+
+        indexArray.setText("");
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
-        Menu menu = new Menu();
-        this.dispose();
-    }//GEN-LAST:event_volverActionPerformed
-
-    private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
-        String nombre = inputNombreB.getText();
-        arregloResultado = arbolGenealogico.buscarNombre(nombre);
-        if(arregloResultado != null){
-            resultadosBusqueda.setText(arbolGenealogico.mostrarResultadoos(arregloResultado));
-    }//GEN-LAST:event_buscarNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +178,6 @@ public class BuscarNombre extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new BuscarNombre().setVisible(true);
             }
