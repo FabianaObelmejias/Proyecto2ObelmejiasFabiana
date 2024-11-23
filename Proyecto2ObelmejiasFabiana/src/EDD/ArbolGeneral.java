@@ -71,6 +71,23 @@ public class ArbolGeneral{
         return null;
     }
     
+    public NodoArbol buscarPorNombreClave(String nombre) {
+        if (this.isEmpty()) {
+            return null;
+        }
+
+        Cola cola = new Cola();
+        cola.encolar(raiz);
+
+        while (!cola.isEmpty()) {
+            NodoArbol nodoActual = (NodoArbol) cola.desencolar();
+            Persona persona = (Persona) nodoActual.getDato();
+
+            if (persona.getMote() != null) {
+                if (persona.getMote().equalsIgnoreCase(nombre)) {
+                    return nodoActual;
+    
+    
     public void mostrarPorNivel(){
         //depende del buscarPorNombre AJURO, con ello podremos probar la funcionalidad del arbol
         if (this.isEmpty()) {
