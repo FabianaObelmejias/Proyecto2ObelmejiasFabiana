@@ -7,6 +7,7 @@ package Modelo;
 import EDD.ArbolGeneral;
 import EDD.HashTable;
 import EDD.Lista;
+import EDD.Nodo;
 import static Interfaces.Iniciar.arbolGenealogico;
 
 /**
@@ -58,27 +59,40 @@ public class ArbolGenealogico {
         return null;
     }
     
-    
-    
-    public void buscarTitulo(String titulo){
-        
+    public Persona[] convertirResultadosArreglo(Lista resultados) {
+        Persona[] resultadosStr = new Persona[resultados.getSize()];
+
+        Nodo temp = resultados.getpFirst();
+        int count = 0;
+        while (temp != null) {
+            Persona personaActual = (Persona) temp.getDato();
+            resultadosStr[count] = personaActual;
+            temp = temp.getpNext();
+            count++;
+        }
+
+        return resultadosStr;
+
     }
     
-    public void mostrarGeneracion(int generacion){
-        
+
+    public void buscarTitulo(String titulo) {
+
     }
-    
-    public Lista opcionesDeGeneracion(){
+
+    public void mostrarGeneracion(int generacion) {
+
+    }
+
+    public Lista opcionesDeGeneracion() {
         return null;
     }
+    
 
     public Object getHashTable() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public String mostrarResultados(Persona[] arregloResultado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public String mostrarResultadoos(Persona[] arregloResultado) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
