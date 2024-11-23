@@ -6,9 +6,9 @@ package Funciones;
 
 import EDD.ArbolGnral;
 import EDD.NodoArbol;
+import Interfaces.Menu;
 import Modelo.Persona;
 import java.awt.BorderLayout;
-import java.awt.Menu;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -35,6 +35,7 @@ public class MostrarArbol extends JFrame{
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        this.setLocationRelativeTo(null);
     }
 
     private void inicializarVisor() {
@@ -123,5 +124,6 @@ public class MostrarArbol extends JFrame{
 
     private void abrirMenu() {
         Menu menuPrincipal = new Menu();
+        
     }
 }

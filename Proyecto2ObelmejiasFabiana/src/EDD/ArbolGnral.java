@@ -209,5 +209,22 @@ public class ArbolGnral {
 
         return nodosEnNivel;
     }
+    
+    public Lista listaAncestros(NodoArbol nodo){
+        if(nodo != null){
+            Lista ancestros = new Lista();
+            NodoArbol nodoActual = nodo.getPadre();
+            
+            while(nodoActual !=null){
+                Persona personaAct = (Persona) nodoActual.getDato();
+                ancestros.insertarFinal(personaAct);
+                nodoActual = nodoActual.getPadre();
+            } 
+            
+            return ancestros;
+        }
+        
+        return null;
+    }
 
 }

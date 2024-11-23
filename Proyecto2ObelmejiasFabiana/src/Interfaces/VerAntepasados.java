@@ -4,11 +4,8 @@
  */
 package Interfaces;
 
-import EDD.ArbolGnral;
 import EDD.Lista;
-import EDD.Nodo;
-import EDD.NodoArbol;
-import Funciones.MostrarArbol;
+import Funciones.MostrarAntepasados;
 import static Interfaces.Iniciar.arbolGenealogico;
 import static Interfaces.Menu.validar;
 import Modelo.Persona;
@@ -130,13 +127,15 @@ public class VerAntepasados extends javax.swing.JFrame {
         if (validar.validarNumeros(indexStr) != -1) {
             int index = validar.validarNumeros(indexStr);
 
-            ArbolGnral arbolDesc = arbolGenealogico.descendencia(arregloResultado, index);
-            if (arbolDesc != null) {
+            Lista listaAencestros = arbolGenealogico.mostrarAntepasados(arregloResultado, index);
+            if (listaAencestros != null) {
+
                 System.setProperty("org.graphstream.ui", "swing");
-                MostrarArbol verArbol = new MostrarArbol(arbolDesc);
-                verArbol.setVisible(true);
+                MostrarAntepasados verAntepasados = new MostrarAntepasados(listaAencestros);
+                verAntepasados.setVisible(true);
                 this.dispose();
-                //arbolDesc.mostrarPorNivel();
+
+//arbolDesc.mostrarPorNivel();
             } else {
                 JOptionPane.showMessageDialog(null, "Indice invalido. El indice debe estar entre 0 y " + arregloResultado.length);
             }

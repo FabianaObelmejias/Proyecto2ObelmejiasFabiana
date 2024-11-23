@@ -50,9 +50,7 @@ public class ArbolGenealogico {
         this.nombreLinaje = nombreLinaje;
     }
 
-    public void mostrarAntepasados(Persona persona) {
-
-    }
+    
 
     public Persona[] buscarNombre(String nombre) {
 
@@ -159,6 +157,28 @@ public class ArbolGenealogico {
            
             return null;
         }
+    }
+    
+     public Lista mostrarAntepasados(Persona[] arreglo, int index) {
+        if (index >= 0 && index < arreglo.length) {
+            String clave = "";
+
+            if (arreglo[index].getMote() != null) {
+                clave = arreglo[index].getMote();
+            } else {
+                clave = arreglo[index].getNombreCompleto() + " " + arreglo[index].getNumeral();
+            }
+
+            NodoArbol raiz2 = this.getArbol().buscarPorNombreClave(clave);
+            if(raiz2 != null){
+                return this.arbol.listaAncestros(raiz2);
+            }
+
+            
+        }
+        
+        return null;
+
     }
 
 }
