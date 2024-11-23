@@ -9,7 +9,6 @@ import EDD.NodoArbol;
 import static Interfaces.Iniciar.arbolGenealogico;
 import static Interfaces.Menu.validar;
 import Modelo.Persona;
-import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,9 +18,7 @@ import javax.swing.JOptionPane;
 public class BuscarNombre extends javax.swing.JFrame {
 
     
-    /**
-     * Creates new form BuscarNombre
-     */
+    
     private Persona[] arregloResultado;
     public BuscarNombre() {
         initComponents();
@@ -54,10 +51,15 @@ public class BuscarNombre extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setText("Buscar por Nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(101, 22, -1, -1));
 
         jLabel2.setText("Escriba el nombre");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 66, 108, -1));
+        jPanel1.add(inputNombreB, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 88, 246, -1));
 
         buscarNombre.setText("buscar");
         buscarNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -65,10 +67,14 @@ public class BuscarNombre extends javax.swing.JFrame {
                 buscarNombreActionPerformed(evt);
             }
         });
+        jPanel1.add(buscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 88, -1, -1));
 
         jLabel3.setText("Resultados");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 129, 67, -1));
 
         jLabel4.setText("Ingrese el numero asociado a uno de los resultados para ver detalles");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 297, 373, -1));
+        jPanel1.add(indexArray, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 319, 255, -1));
 
         jButton1.setText("ver detalles");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +82,7 @@ public class BuscarNombre extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 353, 255, -1));
 
         volver.setText("volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -83,70 +90,13 @@ public class BuscarNombre extends javax.swing.JFrame {
                 volverActionPerformed(evt);
             }
         });
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 388, -1, -1));
 
         resultadosBusqueda.setColumns(20);
         resultadosBusqueda.setRows(5);
         jScrollPane1.setViewportView(resultadosBusqueda);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(101, 101, 101)
-                                    .addComponent(jLabel1))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(47, 47, 47)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(inputNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buscarNombre))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                .addComponent(indexArray, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(volver)
-                .addGap(18, 18, 18))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buscarNombre))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(indexArray, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(volver)
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 157, 216, 128));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,7 +149,8 @@ public class BuscarNombre extends javax.swing.JFrame {
     private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
         String nombre = inputNombreB.getText();
         arregloResultado = arbolGenealogico.buscarNombre(nombre);
-        resultadosBusqueda.setText(arbolGenealogico.mostrarResultadoos(arregloResultado));
+        if(arregloResultado != null){
+            resultadosBusqueda.setText(arbolGenealogico.mostrarResultadoos(arregloResultado));
     }//GEN-LAST:event_buscarNombreActionPerformed
 
     /**
@@ -231,6 +182,7 @@ public class BuscarNombre extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new BuscarNombre().setVisible(true);
             }

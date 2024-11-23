@@ -97,7 +97,7 @@ public class ArbolGenealogico {
 
 
     public void buscarTitulo(String titulo) {
-
+        
     }
 
     public void mostrarGeneracion(int generacion) {

@@ -36,7 +36,7 @@ public class Iniciar extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        bienvenidos = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         empezar = new javax.swing.JButton();
         salida = new javax.swing.JButton();
 
@@ -44,9 +44,9 @@ public class Iniciar extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bienvenidos.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
-        bienvenidos.setText("Bienvenidos");
-        jPanel1.add(bienvenidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
+        jLabel1.setText("Bienvenidos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
 
         empezar.setText("Empezar");
         empezar.addActionListener(new java.awt.event.ActionListener() {
@@ -54,7 +54,7 @@ public class Iniciar extends javax.swing.JFrame {
                 empezarActionPerformed(evt);
             }
         });
-        jPanel1.add(empezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 130, 300, -1));
+        jPanel1.add(empezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 300, -1));
 
         salida.setText("x");
         salida.addActionListener(new java.awt.event.ActionListener() {
@@ -62,17 +62,17 @@ public class Iniciar extends javax.swing.JFrame {
                 salidaActionPerformed(evt);
             }
         });
-        jPanel1.add(salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+        jPanel1.add(salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
         );
 
         pack();
@@ -126,8 +126,8 @@ public class Iniciar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel bienvenidos;
     private javax.swing.JButton empezar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton salida;
     // End of variables declaration//GEN-END:variables

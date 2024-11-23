@@ -22,4 +22,8 @@ public class Validar {
             return -1;
         }
     }
+
+    public int validarNumeros(String indexStr) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
