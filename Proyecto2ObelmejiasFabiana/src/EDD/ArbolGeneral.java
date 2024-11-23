@@ -56,8 +56,16 @@ public class ArbolGeneral{
         while (!cola.isEmpty()) {
             NodoArbol nodoActual = (NodoArbol) cola.desencolar();
             Persona persona = (Persona) nodoActual.getDato();
-            if (persona.getNombreCompleto().equalsIgnoreCase(nombre)) {
+            if (persona.getMote().equalsIgnoreCase(nombre)) {
                 return nodoActual;
+            }else{
+                String nombreComparar = persona.getNombreCompleto() + " " + persona.getNumeral();
+                
+                if(nombreComparar.equalsIgnoreCase(nombre)){
+                    return nodoActual;
+                }
+                  
+                
             }
 
             Nodo hijoNodo = nodoActual.getHijos().getpFirst();
