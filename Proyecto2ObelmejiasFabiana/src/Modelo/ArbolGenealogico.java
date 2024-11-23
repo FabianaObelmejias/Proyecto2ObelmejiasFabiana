@@ -222,4 +222,18 @@ public class ArbolGenealogico {
         }
         return null;
     }
+    
+    public Lista nombresPersonas(){
+        Lista nombres = new Lista();
+        for (int i = 0; i < this.hashTable.getCapacidad(); i++) {
+            if(!this.hashTable.getTabla()[i].isEmpty()){
+                for (int j = 0; j < this.hashTable.getTabla()[i].getSize(); j++) {
+                    Persona personaActual = (Persona) this.hashTable.getTabla()[i].getValor(j);
+                    nombres.insertarFinal(personaActual.nombreUnico());
+                }
+            }
+        }
+        
+        return nombres;
+    }
 }

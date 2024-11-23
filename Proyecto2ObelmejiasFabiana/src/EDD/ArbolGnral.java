@@ -8,14 +8,16 @@ import Modelo.Persona;
 import javax.swing.JOptionPane;
 
 /**
- * Clase que representa un árbol general, donde cada nodo puede tener múltiples hijos.
- * Los nodos se organizan jerárquicamente, con una raíz inicial y ramas de nodos hijos.
- * 
- * Este árbol permite almacenar datos de tipo {@link Persona} y realizar operaciones
- * como agregar nodos, buscar, mostrar por nivel y calcular el nivel máximo.
- * 
+ * Clase que representa un árbol general, donde cada nodo puede tener múltiples
+ * hijos. Los nodos se organizan jerárquicamente, con una raíz inicial y ramas
+ * de nodos hijos.
+ *
+ * Este árbol permite almacenar datos de tipo {@link Persona} y realizar
+ * operaciones como agregar nodos, buscar, mostrar por nivel y calcular el nivel
+ * máximo.
+ *
  * Se implementa utilizando nodos del tipo {@link NodoArbol}.
- * 
+ *
  * @author obelm
  */
 public class ArbolGnral {
@@ -32,7 +34,7 @@ public class ArbolGnral {
 
     /**
      * Obtiene el nodo raíz del árbol.
-     * 
+     *
      * @return el nodo raíz
      */
     public NodoArbol getRaiz() {
@@ -41,7 +43,7 @@ public class ArbolGnral {
 
     /**
      * Establece un nodo como la raíz del árbol.
-     * 
+     *
      * @param raiz el nodo a establecer como raíz
      */
     public void setRaiz(NodoArbol raiz) {
@@ -50,7 +52,7 @@ public class ArbolGnral {
 
     /**
      * Verifica si el árbol está vacío.
-     * 
+     *
      * @return true si el árbol no tiene nodos, false en caso contrario
      */
     public boolean isEmpty() {
@@ -59,7 +61,7 @@ public class ArbolGnral {
 
     /**
      * Crea la raíz del árbol con un dato específico.
-     * 
+     *
      * @param dato el dato que se almacenará en la raíz
      * @return el nodo raíz creado
      */
@@ -69,9 +71,9 @@ public class ArbolGnral {
     }
 
     /**
-     * Agrega un hijo a un nodo específico del árbol.
-     * Si el nodo ya existe en el árbol (verificado por su nombre único o mote), no lo agrega.
-     * 
+     * Agrega un hijo a un nodo específico del árbol. Si el nodo ya existe en el
+     * árbol (verificado por su nombre único o mote), no lo agrega.
+     *
      * @param padre el nodo al que se agregará el hijo
      * @param dato el dato que se almacenará en el nuevo nodo hijo
      * @return el nodo hijo agregado, o null si ya existía
@@ -98,9 +100,9 @@ public class ArbolGnral {
     }
 
     /**
-     * Busca un nodo en el árbol cuyo nombre completo coincide con el proporcionado.
-     * La búsqueda se realiza en orden por niveles.
-     * 
+     * Busca un nodo en el árbol cuyo nombre completo coincide con el
+     * proporcionado. La búsqueda se realiza en orden por niveles.
+     *
      * @param nombre el nombre completo del nodo a buscar
      * @return el nodo encontrado, o null si no se encuentra
      */
@@ -133,9 +135,9 @@ public class ArbolGnral {
     }
 
     /**
-     * Busca un nodo en el árbol cuyo mote o nombre único coincide con el proporcionado.
-     * La búsqueda se realiza en orden por niveles.
-     * 
+     * Busca un nodo en el árbol cuyo mote o nombre único coincide con el
+     * proporcionado. La búsqueda se realiza en orden por niveles.
+     *
      * @param nombre el mote o nombre único del nodo a buscar
      * @return el nodo encontrado, o null si no se encuentra
      */
@@ -180,8 +182,8 @@ public class ArbolGnral {
     }
 
     /**
-     * Muestra el contenido del árbol por niveles en la consola.
-     * Si el árbol está vacío, muestra un mensaje indicando que está vacío.
+     * Muestra el contenido del árbol por niveles en la consola. Si el árbol
+     * está vacío, muestra un mensaje indicando que está vacío.
      */
     public void mostrarPorNivel() {
         if (this.isEmpty()) {
@@ -212,7 +214,7 @@ public class ArbolGnral {
 
     /**
      * Calcula el nivel máximo (profundidad) del árbol.
-     * 
+     *
      * @return el nivel máximo del árbol
      */
     public int maximoNivel() {
@@ -242,7 +244,7 @@ public class ArbolGnral {
 
     /**
      * Obtiene los nodos de un nivel específico del árbol.
-     * 
+     *
      * @param nivelBuscado el nivel a buscar
      * @return una lista con los nodos en el nivel especificado
      */
@@ -276,7 +278,7 @@ public class ArbolGnral {
 
     /**
      * Obtiene la lista de ancestros de un nodo específico.
-     * 
+     *
      * @param nodo el nodo del cual obtener los ancestros
      * @return una lista de ancestros, o null si el nodo es null
      */
@@ -295,5 +297,105 @@ public class ArbolGnral {
         }
 
         return null; // Si el nodo es null, no hay ancestros
+    }
+
+    /**
+     * Encuentra el abuelo de una persona dado su nombre.
+     *
+     * @param nombre el nombre de la persona
+     * @return el nodo del abuelo, o null si no tiene abuelo
+     */
+    public NodoArbol encontrarAbuelo(String nombre) {
+        NodoArbol nodoPersona = this.buscarPorNombreClave(nombre);
+        if (nodoPersona != null && nodoPersona.getPadre() != null) {
+            return nodoPersona.getPadre().getPadre(); // Subir dos niveles en el árbol
+        }
+        return null; // No tiene abuelo
+    }
+
+    /**
+     * Encuentra los tíos de una persona dado su nombre.
+     *
+     * @param nombre el nombre de la persona
+     * @return una lista con los nodos de los tíos, o una lista vacía si no
+     * tiene tíos
+     */
+    public Lista encontrarTios(String nombre) {
+        Lista tios = new Lista();
+        NodoArbol nodoPersona = buscarPorNombreClave(nombre);
+
+        if (nodoPersona != null && nodoPersona.getPadre() != null) {
+            NodoArbol abuelo = nodoPersona.getPadre().getPadre(); // Subir al abuelo
+            if (abuelo != null) {
+                Nodo hijoNodo = abuelo.getHijos().getpFirst();
+                while (hijoNodo != null) {
+                    NodoArbol tio = (NodoArbol) hijoNodo.getDato();
+                    if (!tio.equals(nodoPersona.getPadre())) { // Excluir al padre
+                        tios.insertarFinal(tio.getDato());
+                    }
+                    hijoNodo = hijoNodo.getpNext();
+                }
+            }
+        }
+
+        return tios;
+    }
+
+    /**
+     * Encuentra los hermanos de una persona dado su nombre.
+     *
+     * @param nombre el nombre de la persona
+     * @return una lista con los nodos de los hermanos, o una lista vacía si no
+     * tiene hermanos
+     */
+    public Lista encontrarHermanos(String nombre) {
+        Lista hermanos = new Lista();
+        NodoArbol nodoPersona = buscarPorNombreClave(nombre);
+
+        if (nodoPersona != null && nodoPersona.getPadre() != null) {
+            Nodo hijoNodo = nodoPersona.getPadre().getHijos().getpFirst();
+            while (hijoNodo != null) {
+                NodoArbol hermano = (NodoArbol) hijoNodo.getDato();
+                if (!hermano.equals(nodoPersona)) { // Excluir al nodo actual
+                    hermanos.insertarFinal(hermano.getDato());
+                }
+                hijoNodo = hijoNodo.getpNext();
+            }
+        }
+
+        return hermanos;
+    }
+
+    /**
+     * Encuentra los primos de una persona dado su nombre.
+     *
+     * @param nombre el nombre de la persona
+     * @return una lista con los nodos de los primos, o una lista vacía si no
+     * tiene primos
+     */
+    public Lista encontrarPrimos(String nombre) {
+        Lista primos = new Lista();
+        NodoArbol nodoPersona = buscarPorNombreClave(nombre);
+
+        if (nodoPersona != null && nodoPersona.getPadre() != null) {
+            NodoArbol abuelo = nodoPersona.getPadre().getPadre(); // Subir al abuelo
+            if (abuelo != null) {
+                Nodo hijoNodo = abuelo.getHijos().getpFirst();
+                while (hijoNodo != null) {
+                    NodoArbol tio = (NodoArbol) hijoNodo.getDato();
+                    if (!tio.equals(nodoPersona.getPadre())) { // Excluir al padre
+                        Nodo hijoTio = tio.getHijos().getpFirst(); // Hijos del tío
+                        while (hijoTio != null) {
+                            NodoArbol primo = (NodoArbol) hijoTio.getDato();
+                            primos.insertarFinal(primo.getDato());
+                            hijoTio = hijoTio.getpNext();
+                        }
+                    }
+                    hijoNodo = hijoNodo.getpNext();
+                }
+            }
+        }
+
+        return primos;
     }
 }

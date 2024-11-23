@@ -30,6 +30,22 @@ public class HashTable {
         this.tabla = new Lista[capacidad];
         this.inicializar(); // Inicializa cada índice de la tabla con una lista vacía.
     }
+    
+    public Lista[] getTabla() {
+        return tabla;
+    }
+
+    public void setTabla(Lista[] tabla) {
+        this.tabla = tabla;
+    }
+
+    public int getCapacidad() {
+        return capacidad;
+    }
+
+    public void setCapacidad(int capacidad) {
+        this.capacidad = capacidad;
+    }
 
     /**
      * Método privado para inicializar las listas en cada posición de la tabla.
@@ -185,4 +201,8 @@ public class HashTable {
             }
         }
     }
+
+    
+    
+    
 }
