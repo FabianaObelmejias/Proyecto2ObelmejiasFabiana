@@ -45,7 +45,7 @@ public class ArbolGeneral{
     
     //voy por cada nivel del arbol para buscar los nodos en cada nivel
     
-    public NodoArbol buscarPorNombre(String nombre){
+    public NodoArbol buscarPorNombre(String nombre) {
         if (this.isEmpty()) {
             return null;
         }
@@ -56,16 +56,8 @@ public class ArbolGeneral{
         while (!cola.isEmpty()) {
             NodoArbol nodoActual = (NodoArbol) cola.desencolar();
             Persona persona = (Persona) nodoActual.getDato();
-            if (persona.getMote().equalsIgnoreCase(nombre)) {
+            if (persona.getNombreCompleto().equalsIgnoreCase(nombre)) {
                 return nodoActual;
-            }else{
-                String nombreComparar = persona.getNombreCompleto() + " " + persona.getNumeral();
-                
-                if(nombreComparar.equalsIgnoreCase(nombre)){
-                    return nodoActual;
-                }
-                  
-                
             }
 
             Nodo hijoNodo = nodoActual.getHijos().getpFirst();
@@ -75,6 +67,7 @@ public class ArbolGeneral{
                 hijoNodo = hijoNodo.getpNext();
             }
         }
+
         return null;
     }
     
