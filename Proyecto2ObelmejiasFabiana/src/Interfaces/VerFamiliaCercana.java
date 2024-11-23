@@ -17,6 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 public class VerFamiliaCercana extends javax.swing.JFrame {
 
     DefaultComboBoxModel modeloPersonas = new DefaultComboBoxModel();
+
     public VerFamiliaCercana() {
         initComponents();
         this.setVisible(true);
@@ -24,8 +25,8 @@ public class VerFamiliaCercana extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.llenarModelo();
     }
-    
-    private void llenarModelo(){
+
+    private void llenarModelo() {
         Lista nombres = arbolGenealogico.nombresPersonas();
         for (int i = 0; i < nombres.getSize(); i++) {
             modeloPersonas.addElement(nombres.getValor(i));
@@ -163,44 +164,59 @@ public class VerFamiliaCercana extends javax.swing.JFrame {
 
     private void buscarFamiliaCercanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarFamiliaCercanaActionPerformed
         String nombreSeleccion = (String) personas.getSelectedItem();
-        Persona abuelo = (Persona) arbolGenealogico.getArbol().encontrarAbuelo(nombreSeleccion).getDato();
-        resultAbuelo.setText(abuelo.nombreUnico());
-        
-        Persona padre = (Persona) arbolGenealogico.getArbol().buscarPorNombreClave(nombreSeleccion).getPadre().getDato();
-        resultPadre.setText(padre.nombreUnico());
-        
-        Lista tiosEnc = arbolGenealogico.getArbol().encontrarTios(nombreSeleccion);
-        String tios = "";
-        for (int i = 0; i < tiosEnc.getSize(); i++) {
-            Persona tioAct = (Persona) tiosEnc.getValor(i);
-            tios += tioAct.nombreUnico() + "\n";
+
+        if (arbolGenealogico.getArbol().encontrarAbuelo(nombreSeleccion) != null) {
+            Persona abuelo = (Persona) arbolGenealogico.getArbol().encontrarAbuelo(nombreSeleccion).getDato();
+            resultAbuelo.setText(abuelo.nombreUnico());
         }
-        resultTios.setText(tios);
-        
-        Lista primosEnc  = arbolGenealogico.getArbol().encontrarPrimos(nombreSeleccion);
-        String primos = "";
-        for (int i = 0; i < primosEnc.getSize(); i++) {
-            Persona primoAct = (Persona) primosEnc.getValor(i);
-            primos += primoAct.nombreUnico() + "\n";
+
+        if (arbolGenealogico.getArbol().buscarPorNombreClave(nombreSeleccion).getPadre() != null) {
+            Persona padre = (Persona) arbolGenealogico.getArbol().buscarPorNombreClave(nombreSeleccion).getPadre().getDato();
+            resultPadre.setText(padre.nombreUnico());
         }
-        resultPrimos.setText(primos);
-        
-        Lista hermanosEnc  = arbolGenealogico.getArbol().encontrarHermanos(nombreSeleccion);
-        String hermanos = "";
-        for (int i = 0; i < primosEnc.getSize(); i++) {
-            Persona hermanAct = (Persona) hermanosEnc.getValor(i);
-            hermanos += hermanAct.nombreUnico() + "\n";
+
+        if (!arbolGenealogico.getArbol().encontrarTios(nombreSeleccion).isEmpty()) {
+            Lista tiosEnc = arbolGenealogico.getArbol().encontrarTios(nombreSeleccion);
+            String tios = "";
+            for (int i = 0; i < tiosEnc.getSize(); i++) {
+                Persona tioAct = (Persona) tiosEnc.getValor(i);
+                tios += tioAct.nombreUnico() + "\n";
+            }
+            resultTios.setText(tios);
         }
-        resultHermanos.setText(hermanos);
-        
-        Lista hijosEnc  = arbolGenealogico.getArbol().buscarPorNombreClave(nombreSeleccion).getHijos();
-        String hijos = "";
-        for (int i = 0; i < hijosEnc.getSize(); i++) {
-            NodoArbol hijo1 = (NodoArbol) hijosEnc.getValor(i);
-            Persona hijosAct = (Persona) hijo1.getDato();
-            hijos += hijosAct.nombreUnico() + "\n";
+
+        if (!arbolGenealogico.getArbol().encontrarPrimos(nombreSeleccion).isEmpty()) {
+            Lista primosEnc = arbolGenealogico.getArbol().encontrarPrimos(nombreSeleccion);
+            String primos = "";
+            for (int i = 0; i < primosEnc.getSize(); i++) {
+                Persona primoAct = (Persona) primosEnc.getValor(i);
+                primos += primoAct.nombreUnico() + "\n";
+            }
+            resultPrimos.setText(primos);
         }
-        resultHijos.setText(hijos);
+
+        if (!arbolGenealogico.getArbol().encontrarHermanos(nombreSeleccion).isEmpty()) {
+            Lista hermanosEnc = arbolGenealogico.getArbol().encontrarHermanos(nombreSeleccion);
+            String hermanos = "";
+            for (int i = 0; i < hermanosEnc.getSize(); i++) {
+                Persona hermanAct = (Persona) hermanosEnc.getValor(i);
+                hermanos += hermanAct.nombreUnico() + "\n";
+            }
+            resultHermanos.setText(hermanos);
+        }
+
+        if (!arbolGenealogico.getArbol().buscarPorNombreClave(nombreSeleccion).getHijos().isEmpty()) {
+            Lista hijosEnc = arbolGenealogico.getArbol().buscarPorNombreClave(nombreSeleccion).getHijos();
+            String hijos = "";
+            for (int i = 0; i < hijosEnc.getSize(); i++) {
+                NodoArbol hijo1 = (NodoArbol) hijosEnc.getValor(i);
+                Persona hijosAct = (Persona) hijo1.getDato();
+                hijos += hijosAct.nombreUnico() + "\n";
+            }
+            resultHijos.setText(hijos);
+        }
+
+
     }//GEN-LAST:event_buscarFamiliaCercanaActionPerformed
 
     /**
