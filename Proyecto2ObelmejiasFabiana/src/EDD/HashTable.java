@@ -67,6 +67,12 @@ public class HashTable {
         return null;
     }
     
+    public Lista buscarNombre(String nombre){
+        Lista resultado = new Lista();
+    }
+    
+    
+    
     //DEBO utilizar el destruir para reinicializar todas las listas que estan en la tabla en caso tal de ser necesario
     public void destruir(){
         for(int i = 0; i < this.capacidad; i++)
