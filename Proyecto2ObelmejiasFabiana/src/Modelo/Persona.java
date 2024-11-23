@@ -5,23 +5,65 @@
 package Modelo;
 
 /**
- *
+ * Clase que representa a una persona con diversos atributos, como su nombre completo, parentesco, 
+ * características físicas, y comentarios sobre su vida y muerte.
+ * Es útil para almacenar y gestionar información personal detallada.
+ * 
  * @author obelm
  */
 public class Persona {
+
+    // Nombre completo de la persona
     private String nombreCompleto;
+
+    // Numeral asociado al nombre
     private String numeral;
+
+    // Nombre del padre de la persona
     private String padre;
+
+    // Nombre de la madre de la persona
     private String madre;
+
+    // Mote o apodo de la persona
     private String mote;
+
+    // Título asociado a la persona 
     private String titulo;
+
+    // Nombre de la esposa de la persona, si aplica
     private String esposa;
+
+    // Color de ojos de la persona
     private String coloarOjos;
+
+    // Color de cabello de la persona
     private String colorCabello;
+
+    // Comentarios generales sobre la vida de la persona
     private String comentariosVida;
+
+    // Comentarios sobre la muerte de la persona
     private String comentariosMuerte;
 
-    public Persona(String nombreCompleto, String numeral, String padre, String madre, String mote, String titulo, String esposa, String coloarOjos, String colorCabello, String comentariosVida, String comentariosMuerte) {
+    /**
+     * Constructor que inicializa todos los atributos de la persona.
+     * 
+     * @param nombreCompleto el nombre completo de la persona
+     * @param numeral el numeral asociado al nombre
+     * @param padre el nombre del padre
+     * @param madre el nombre de la madre
+     * @param mote el mote o apodo
+     * @param titulo el título de la persona
+     * @param esposa el nombre de la esposa
+     * @param coloarOjos el color de los ojos
+     * @param colorCabello el color del cabello
+     * @param comentariosVida comentarios sobre la vida de la persona
+     * @param comentariosMuerte comentarios sobre la muerte de la persona
+     */
+    public Persona(String nombreCompleto, String numeral, String padre, String madre, String mote, 
+                   String titulo, String esposa, String coloarOjos, String colorCabello, 
+                   String comentariosVida, String comentariosMuerte) {
         this.nombreCompleto = nombreCompleto;
         this.numeral = numeral;
         this.padre = padre;
@@ -34,13 +76,8 @@ public class Persona {
         this.comentariosVida = comentariosVida;
         this.comentariosMuerte = comentariosMuerte;
     }
-    
-    public Persona(String nombreCompleto, String numeral, String padre, String titulo) {
-        this.nombreCompleto = nombreCompleto;
-        this.numeral = numeral;
-        this.padre = padre;
-        this.titulo = titulo;
-    }
+
+    // Getters y setters para cada atributo. Permiten acceder y modificar los datos.
 
     public String getComentariosMuerte() {
         return comentariosMuerte;
@@ -49,7 +86,7 @@ public class Persona {
     public void setComentariosMuerte(String comentariosMuerte) {
         this.comentariosMuerte = comentariosMuerte;
     }
-    
+
     public String getNombreCompleto() {
         return nombreCompleto;
     }
@@ -129,28 +166,41 @@ public class Persona {
     public void setComentariosVida(String comentariosVida) {
         this.comentariosVida = comentariosVida;
     }
-    
-    public String nombreUnico(){
-        if(this.getMote() != null){
-           return this.getMote();
+
+    /**
+     * Método que genera un nombre único para la persona.
+     * Si la persona tiene un mote, se utiliza este como nombre único. 
+     * Si no, se combina su nombre completo y numeral.
+     * 
+     * @return el nombre único de la persona
+     */
+    public String nombreUnico() {
+        if (this.getMote() != null) {
+            return this.getMote();
         }
         return this.nombreCompleto + " " + this.numeral;
     }
 
+    /**
+     * Método que genera una representación en texto de la información completa de la persona.
+     * 
+     * @return un string con todos los datos de la persona
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Informacion Completa:");
+        sb.append("Información Completa:");
         sb.append("\nNombre Completo: ").append(this.nombreUnico());
         sb.append("\nPadre: ").append(padre);
         sb.append("\nMadre: ").append(madre);
         sb.append("\nMote: ").append(mote);
-        sb.append("\nTitulo: ").append(titulo);
+        sb.append("\nTítulo: ").append(titulo);
         sb.append("\nEsposa: ").append(esposa);
         sb.append("\nColor de Ojos: ").append(coloarOjos);
         sb.append("\nColor de Cabello: ").append(colorCabello);
-        sb.append("\ncomentarios de su Vida: ").append(comentariosVida);
+        sb.append("\nComentarios de su Vida: ").append(comentariosVida);
         sb.append("\nComentarios de su Muerte: ").append(comentariosMuerte);
         return sb.toString();
-    }    
+    }
 }
+
