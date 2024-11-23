@@ -69,6 +69,20 @@ public class HashTable {
     
     public Lista buscarNombre(String nombre){
         Lista resultado = new Lista();
+        
+        for(int i = 0; i< this.capacidad; i++){
+            if(!tabla[i].isEmpty()){
+                Nodo temp = tabla[i].getpFirst();
+                while(temp != null){
+                    Persona personaAct = (Persona)temp.getDato();
+                    if(personaAct.getMote() != null){
+                        resultado.insertarFinal(personaAct);
+                    }else{
+                       
+                    }
+                }
+            }
+        }
     }
     
     
