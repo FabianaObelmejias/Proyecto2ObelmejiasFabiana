@@ -4,8 +4,10 @@
  */
 package Interfaces;
 
+import static Interfaces.Iniciar.arbolGenealogico;
 import static Interfaces.Menu.validar;
 import Modelo.Persona;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -162,22 +164,22 @@ public class BuscarNombre extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String indexStr = indexArray.getText();
-        if(validar.ValidarNumeros(indexStr) != -1)
+
+        if (validar.validarNumeros(indexStr) != -1) {
             int index = validar.validarNumeros(indexStr);
-        }
-        
-        String clave = "";
-        
-        if(arregloResultado[index].getMote() != null){
-            clave = arregloResultado[index].getMote();
+
+            String clave = "";
+
+            if (arregloResultado[index].getMote() != null) {
+                clave = arregloResultado[index].getMote();
+            } else {
+                clave = arregloResultado[index].getNombreCompleto() + " " + arregloResultado[index].getNumeral();
+            }
+
+            JOptionPane.showMessageDialog(null, arbolGenealogico.getHashTable().buscar(clave));
         }else{
-            clave = arregloResultado[index].getNombreCompleto() + " " + arregloResultado[index].getNumeral();
+            JOptionPane.showMessageDialog(null, "El input solo pueder un numero entero.");
         }
-        
-        JOptionPane.showMessageDialog(null, arbolGenealogico.getHashTable().buscar(clave));
-    }else{
-        JOptionPane.showMessageDialog(null, "El input solo puede ser un numero entero.");
-    
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -190,7 +192,7 @@ public class BuscarNombre extends javax.swing.JFrame {
     private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
         String nombre = inputNombreB.getText();
         arregloResultado = arbolGenealogico.buscarNombre(nombre);
-        resultadosBusqueda.setText(arbolGenealogico.mostrarResultados(arregloResultado));
+        resultadosBusqueda.setText(arbolGenealogico.mostrarResultadoos(arregloResultado));
     }//GEN-LAST:event_buscarNombreActionPerformed
 
     /**
