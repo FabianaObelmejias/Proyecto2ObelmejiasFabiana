@@ -86,7 +86,33 @@ public class ArbolGeneral{
             if (persona.getMote() != null) {
                 if (persona.getMote().equalsIgnoreCase(nombre)) {
                     return nodoActual;
-    
+     }else{
+                    String nombreComparar = persona.getNombreCompleto() + " " + persona.getNumeral();
+
+                    if (nombreComparar.equalsIgnoreCase(nombre)) {
+                        return nodoActual;
+                    }
+
+                }
+            }else{
+                String nombreComparar = persona.getNombreCompleto() + " " + persona.getNumeral();
+
+                if (nombreComparar.equalsIgnoreCase(nombre)) {
+                    return nodoActual;
+                }
+            }
+            Nodo hijoNodo = nodoActual.getHijos().getpFirst();
+            while (hijoNodo != null) {
+                NodoArbol hijo = (NodoArbol) hijoNodo.getDato();
+                cola.encolar(hijo);
+                hijoNodo = hijoNodo.getpNext();
+            }
+        }
+
+        return null;
+    }
+
+
     
     public void mostrarPorNivel(){
         //depende del buscarPorNombre AJURO, con ello podremos probar la funcionalidad del arbol
