@@ -83,6 +83,17 @@ public class ArbolGenealogico {
         
         return resultStr;
     }
+    
+    public String detallesPersona(Persona persona) {
+        String clave = "";
+        if (persona.getMote() != null) {
+            clave = persona.getMote();
+        } else {
+            clave = persona.getNombreCompleto() + " " + persona.getNumeral();
+        }
+
+        return this.hashtable.buscar(clave).toString();
+    }
 
 
     public void buscarTitulo(String titulo) {
