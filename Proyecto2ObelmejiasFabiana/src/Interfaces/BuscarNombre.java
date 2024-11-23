@@ -4,6 +4,8 @@
  */
 package Interfaces;
 
+import EDD.ArbolGeneral;
+import EDD.NodoArbol;
 import static Interfaces.Iniciar.arbolGenealogico;
 import static Interfaces.Menu.validar;
 import Modelo.Persona;
@@ -176,11 +178,16 @@ public class BuscarNombre extends javax.swing.JFrame {
                 clave = arregloResultado[index].getNombreCompleto() + " " + arregloResultado[index].getNumeral();
             }
 
-            JOptionPane.showMessageDialog(null, arbolGenealogico.getHashTable().buscar(clave));
+            NodoArbol raiz2 = arbolGenealogico.getArbol().buscarPorNombreClave(clave);
+            ArbolGeneral arbolDesc = new ArbolGeneral();
+            arbolDesc.setRaiz(raiz2);
+            arbolDesc.mostrarPorNivel();
+            
         }else{
+            
             JOptionPane.showMessageDialog(null, "El input solo pueder un numero entero.");
-        }
-
+        
+}
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
