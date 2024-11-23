@@ -74,7 +74,16 @@ public class ArbolGenealogico {
         return resultadosStr;
 
     }
-    
+    public String mostrarResultados(Persona[] resultado){
+        String resultStr = "Resultados de la Busqueda:\n";
+        for (int i = 0; i < resultado.length; i++) {
+             
+            resultStr += i + " " + "Mote: " + resultado[i].getMote() + " Nombre: " + resultado[i].getNombreCompleto() + " " + resultado[i].getNumeral() + "\n";
+        }
+        
+        return resultStr;
+    }
+
 
     public void buscarTitulo(String titulo) {
 
