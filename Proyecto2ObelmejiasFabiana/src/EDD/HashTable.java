@@ -78,11 +78,18 @@ public class HashTable {
                     if(personaAct.getMote() != null){
                         resultado.insertarFinal(personaAct);
                     }else{
-                       
+                       if(personaAct.getNombreCompleto().contains(nombre)){
+                           String nombreNumeral = personaAct.getNombreCompleto() + " " + personaAct.getNumeral();
+                           resultado.insertarFinal(personaAct);
+                       }
                     }
+                    temp = temp.getpNext();
                 }
+                
             }
         }
+        return resultado;
+        
     }
     
     
