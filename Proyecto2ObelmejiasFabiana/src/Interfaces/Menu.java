@@ -4,9 +4,12 @@
  */
 package Interfaces;
 
+import Funciones.CargarArchivo;
+import Funciones.FileChooser;
 import Funciones.MostrarArbol;
 import Funciones.Validar;
 import static Interfaces.Iniciar.arbolGenealogico;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +45,7 @@ public class Menu extends javax.swing.JFrame {
         mostrarAntepasados = new javax.swing.JButton();
         CargarNuevoLinaje = new javax.swing.JButton();
         MostrarArbol = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,11 +54,11 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setText("MENU PRINCIPAL");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
 
         nombreCasaSist.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         nombreCasaSist.setText("NOMBRE DE LA CASA");
-        jPanel1.add(nombreCasaSist, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
+        jPanel1.add(nombreCasaSist, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
         buscarNombreBoton.setText("Buscar Por Nombre");
         buscarNombreBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +66,7 @@ public class Menu extends javax.swing.JFrame {
                 buscarNombreBotonActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarNombreBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
+        jPanel1.add(buscarNombreBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 130, 180, -1));
 
         buscarTituloBoton.setText("Buscar por Titulo");
         buscarTituloBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +74,7 @@ public class Menu extends javax.swing.JFrame {
                 buscarTituloBotonActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarTituloBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+        jPanel1.add(buscarTituloBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 190, 20));
 
         ListarGeneracion.setText("Listar Generacion");
         ListarGeneracion.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +82,7 @@ public class Menu extends javax.swing.JFrame {
                 ListarGeneracionActionPerformed(evt);
             }
         });
-        jPanel1.add(ListarGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 130, -1));
+        jPanel1.add(ListarGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 190, -1));
 
         mostrarAntepasados.setText("Mostrar Antepasados");
         mostrarAntepasados.addActionListener(new java.awt.event.ActionListener() {
@@ -86,10 +90,15 @@ public class Menu extends javax.swing.JFrame {
                 mostrarAntepasadosActionPerformed(evt);
             }
         });
-        jPanel1.add(mostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 150, -1));
+        jPanel1.add(mostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 180, -1));
 
         CargarNuevoLinaje.setText("Cargar Nuevo Linaje");
-        jPanel1.add(CargarNuevoLinaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 150, -1));
+        CargarNuevoLinaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarNuevoLinajeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(CargarNuevoLinaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 190, -1));
 
         MostrarArbol.setText("Mostrar Arbol");
         MostrarArbol.addActionListener(new java.awt.event.ActionListener() {
@@ -97,9 +106,12 @@ public class Menu extends javax.swing.JFrame {
                 MostrarArbolActionPerformed(evt);
             }
         });
-        jPanel1.add(MostrarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 150, -1));
+        jPanel1.add(MostrarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 180, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 390));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo1.0.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 320));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,6 +142,31 @@ public class Menu extends javax.swing.JFrame {
         VerAntepasados v4 = new VerAntepasados();
         this.dispose();
     }//GEN-LAST:event_mostrarAntepasadosActionPerformed
+
+    private void CargarNuevoLinajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarNuevoLinajeActionPerformed
+        FileChooser fileChooser = new FileChooser();
+        String rutaArchivo = fileChooser.abrirArchivo(this);
+        CargarArchivo cargar = new CargarArchivo();
+        cargar.cargar(rutaArchivo);
+        if (cargar.getArbolGenealogico() != null) {
+            arbolGenealogico = cargar.getArbolGenealogico();
+            System.setProperty("org.graphstream.ui", "swing");
+            MostrarArbol verArbol = new MostrarArbol(arbolGenealogico.getArbol());
+            verArbol.setVisible(true);
+            this.dispose();
+
+        } else {
+            if (cargar.getErrores() != 0 && cargar.getNombreRepetido() == 0) {
+                JOptionPane.showMessageDialog(null, "Error, hay un padre que no esta identificado con su numeral o su mote. Por favor cargue un JSON Correcto.");
+            } else if (cargar.getErrores() == 0 && cargar.getNombreRepetido() != 0) {
+                JOptionPane.showMessageDialog(null, "Error, hay dos personas con el mismo nombre y numeral o con el mismo mote en generaciones diferentes.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error, hay un padre que no esta identificado con su numeral o su mote. Por favor cargue un JSON Correcto.");
+                JOptionPane.showMessageDialog(null, "Error, hay dos personas con el mismo nombre y numeral o con el mismo mote en generaciones diferentes.");
+            }
+
+        }
+    }//GEN-LAST:event_CargarNuevoLinajeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,6 +210,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton buscarNombreBoton;
     private javax.swing.JButton buscarTituloBoton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton mostrarAntepasados;
     private javax.swing.JLabel nombreCasaSist;

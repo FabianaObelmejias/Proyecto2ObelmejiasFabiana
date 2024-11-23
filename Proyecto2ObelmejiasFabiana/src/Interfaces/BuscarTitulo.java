@@ -48,6 +48,7 @@ public class BuscarTitulo extends javax.swing.JFrame {
         InputIndex = new javax.swing.JTextField();
         verDetalles = new javax.swing.JButton();
         volver = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -58,11 +59,11 @@ public class BuscarTitulo extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setText("Buscar Por Titulo");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
 
         jLabel3.setText("Ingrese el titulo Nobiliario:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
-        jPanel1.add(inputTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 220, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+        jPanel1.add(inputTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 220, -1));
 
         buscar.setText("buscar");
         buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,17 +71,17 @@ public class BuscarTitulo extends javax.swing.JFrame {
                 buscarActionPerformed(evt);
             }
         });
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 80, -1));
 
         resultadoStr.setColumns(20);
         resultadoStr.setRows(5);
         jScrollPane1.setViewportView(resultadoStr);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 220, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 310, 140));
 
         jLabel4.setText("Ingresa el numero asociado al registro para ver detalles: ");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
-        jPanel1.add(InputIndex, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 190, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        jPanel1.add(InputIndex, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 200, -1));
 
         verDetalles.setText("ver detalles");
         verDetalles.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +89,7 @@ public class BuscarTitulo extends javax.swing.JFrame {
                 verDetallesActionPerformed(evt);
             }
         });
-        jPanel1.add(verDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+        jPanel1.add(verDetalles, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
 
         volver.setText("volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -96,9 +97,12 @@ public class BuscarTitulo extends javax.swing.JFrame {
                 volverActionPerformed(evt);
             }
         });
-        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, -1, -1));
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 430));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo1.0.jpg"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 400));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -181,6 +185,7 @@ public class BuscarTitulo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea resultadoStr;

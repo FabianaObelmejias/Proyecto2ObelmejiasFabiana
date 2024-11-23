@@ -178,7 +178,7 @@ public class ArbolGenealogico {
         Lista generaciones = new Lista();
         int max = arbol.maximoNivel();
         for (int i = 0; i < max; i++) {
-            generaciones.insertarFinal("Generación " + (i + 1));
+            generaciones.insertarFinal("Generacion " + (i + 1));
         }
         return generaciones;
     }

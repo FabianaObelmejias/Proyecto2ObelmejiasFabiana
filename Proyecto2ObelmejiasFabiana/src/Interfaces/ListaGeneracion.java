@@ -52,6 +52,8 @@ public class ListaGeneracion extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         generacionStr = new javax.swing.JTextArea();
         volver = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -60,10 +62,10 @@ public class ListaGeneracion extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setText("Listar Generacion");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
 
         listaGeneraciones.setModel(modeloGeneracion);
-        jPanel1.add(listaGeneraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 270, -1));
+        jPanel1.add(listaGeneraciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 430, -1));
 
         listarGeneracion.setText("Listar Generacion");
         listarGeneracion.addActionListener(new java.awt.event.ActionListener() {
@@ -71,13 +73,13 @@ public class ListaGeneracion extends javax.swing.JFrame {
                 listarGeneracionActionPerformed(evt);
             }
         });
-        jPanel1.add(listarGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 270, -1));
+        jPanel1.add(listarGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 430, -1));
 
         generacionStr.setColumns(20);
         generacionStr.setRows(5);
         jScrollPane1.setViewportView(generacionStr);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 380, 320));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 430, 230));
 
         volver.setText("volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -85,9 +87,15 @@ public class ListaGeneracion extends javax.swing.JFrame {
                 volverActionPerformed(evt);
             }
         });
-        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 520, -1, -1));
+        jPanel1.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 90, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 570));
+        jLabel2.setText("Selecciona la generacion que de sea ver:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Fondo1.0.jpg"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 460));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -100,6 +108,8 @@ public class ListaGeneracion extends javax.swing.JFrame {
     private void listarGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarGeneracionActionPerformed
         String opcionCombo = (String) listaGeneraciones.getSelectedItem();
         String numeroStr = opcionCombo.replaceAll("Generacion ", "");
+        //System.out.println(numeroStr);
+        
         int numero = validar.validarNumeros(numeroStr);
         
         generacionStr.setText(arbolGenealogico.mostrarGeneracion(numero));
@@ -143,6 +153,8 @@ public class ListaGeneracion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea generacionStr;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> listaGeneraciones;
