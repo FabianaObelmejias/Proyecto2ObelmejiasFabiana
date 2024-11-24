@@ -112,15 +112,20 @@ public class VerAntepasados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarNombreActionPerformed
-        String nombre = inputNombreB.getText();
-        arregloResultado = arbolGenealogico.buscarNombre(nombre);
-        if (arregloResultado != null) {
-            resultadosBusqueda.setText(arbolGenealogico.mostrarResultados(arregloResultado));
+        if (!inputNombreB.getText().isEmpty()) {
+            String nombre = inputNombreB.getText();
+            arregloResultado = arbolGenealogico.buscarNombre(nombre);
+            if (arregloResultado != null) {
+                resultadosBusqueda.setText(arbolGenealogico.mostrarResultados(arregloResultado));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron nombres o motes que coincidan con la busqueda");
+            }
+
+            inputNombreB.setText("");
         } else {
-            JOptionPane.showMessageDialog(null, "No se encontraron nombres o motes que coincidan con la busqueda");
+            JOptionPane.showMessageDialog(null, "EL INPUT NO PUEDE SER VACIO");
         }
 
-        inputNombreB.setText("");
 
     }//GEN-LAST:event_buscarNombreActionPerformed
 
@@ -130,28 +135,32 @@ public class VerAntepasados extends javax.swing.JFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String indexStr = indexArray.getText();
+        if (!indexArray.getText().isEmpty()) {
+            String indexStr = indexArray.getText();
 
-        if (validar.validarNumeros(indexStr) != -1) {
-            int index = validar.validarNumeros(indexStr);
+            if (validar.validarNumeros(indexStr) != -1) {
+                int index = validar.validarNumeros(indexStr);
 
-            Lista listaAencestros = arbolGenealogico.mostrarAntepasados(arregloResultado, index);
-            if (listaAencestros != null) {
+                Lista listaAencestros = arbolGenealogico.mostrarAntepasados(arregloResultado, index);
+                if (listaAencestros != null) {
 
-                System.setProperty("org.graphstream.ui", "swing");
-                MostrarAntepasados verAntepasados = new MostrarAntepasados(listaAencestros);
-                verAntepasados.setVisible(true);
-                this.dispose();
+                    System.setProperty("org.graphstream.ui", "swing");
+                    MostrarAntepasados verAntepasados = new MostrarAntepasados(listaAencestros);
+                    verAntepasados.setVisible(true);
+                    this.dispose();
 
 //arbolDesc.mostrarPorNivel();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Indice invalido. El indice debe estar entre 0 y " + arregloResultado.length);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Indice invalido. El indice debe estar entre 0 y " + arregloResultado.length);
+                JOptionPane.showMessageDialog(null, "El input solo pueder un numero entero.");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "El input solo pueder un numero entero.");
-        }
 
-        indexArray.setText("");
+            indexArray.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "EL INPUT NO PUEDE SER VACIO");
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

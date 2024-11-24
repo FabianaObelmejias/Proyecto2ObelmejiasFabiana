@@ -169,10 +169,11 @@ public class Menu extends javax.swing.JFrame {
         cargar.cargar(rutaArchivo);
         if (cargar.getArbolGenealogico() != null) {
             arbolGenealogico = cargar.getArbolGenealogico();
+            this.dispose();
             System.setProperty("org.graphstream.ui", "swing");
             MostrarArbol verArbol = new MostrarArbol(arbolGenealogico.getArbol());
             verArbol.setVisible(true);
-            this.dispose();
+            
 
         } else {
             if (cargar.getErrores() != 0 && cargar.getNombreRepetido() == 0) {

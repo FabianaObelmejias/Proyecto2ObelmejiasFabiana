@@ -15,11 +15,10 @@ import javax.swing.JOptionPane;
  *
  * @author obelm
  */
-
 public class BuscarTitulo extends javax.swing.JFrame {
 
     private Persona[] arregloResultado;
-    
+
     public BuscarTitulo() {
         initComponents();
         this.setVisible(true);
@@ -108,15 +107,19 @@ public class BuscarTitulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        String titulo = inputTitulo.getText();
-        arregloResultado = arbolGenealogico.buscarTitulo(titulo);
-        if (arregloResultado != null){
-            resultadoStr.setText(arbolGenealogico.mostrarResultados(arregloResultado));
-        }else{
-            JOptionPane.showMessageDialog(null, "No se encontraron coincidencias con la busqueda");
+        if (!inputTitulo.getText().isEmpty()) {
+            String titulo = inputTitulo.getText();
+            arregloResultado = arbolGenealogico.buscarTitulo(titulo);
+            if (arregloResultado != null) {
+                resultadoStr.setText(arbolGenealogico.mostrarResultados(arregloResultado));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontraron coincidencias con la busqueda");
+            }
+
+            inputTitulo.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "EL INPUT NO PUEDE SER VACIO");
         }
-        
-        inputTitulo.setText("");
     }//GEN-LAST:event_buscarActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
@@ -125,21 +128,26 @@ public class BuscarTitulo extends javax.swing.JFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void verDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDetallesActionPerformed
-        String indexStr = InputIndex.getText();
+        if (!InputIndex.getText().isEmpty()) {
+            String indexStr = InputIndex.getText();
 
-        if (validar.validarNumeros(indexStr) != -1) {
-            int index = validar.validarNumeros(indexStr);
+            if (validar.validarNumeros(indexStr) != -1) {
+                int index = validar.validarNumeros(indexStr);
 
-            if(index >= 0 && index<arregloResultado.length){
-                JOptionPane.showMessageDialog(null,arregloResultado[index].toString() );
-            }else{
-                JOptionPane.showMessageDialog(null, "Indice invalido. El indice debe estar entre 0 y " + arregloResultado.length);
+                if (index >= 0 && index < arregloResultado.length) {
+                    JOptionPane.showMessageDialog(null, arregloResultado[index].toString());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Indice invalido. El indice debe estar entre 0 y " + arregloResultado.length);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El input solo pueder un numero entero.");
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "El input solo pueder un numero entero.");
+
+            InputIndex.setText("");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "EL INPUT NO PUEDE SER VACIO");
         }
-        
-        InputIndex.setText("");
     }//GEN-LAST:event_verDetallesActionPerformed
 
     /**
